@@ -8,6 +8,9 @@
   src: url(font/darlington.ttf);
 }
 
+#theme-button{
+  cursor: pointer;
+}
 
 :root {
   --header-height: 3.5rem;
