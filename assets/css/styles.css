@@ -347,8 +347,8 @@ body.light-theme {
 align-items: center;
   justify-content: center;
 }
-.newcontainer .static-text{
-  color: #ffffff;
+.light-theme .newcontainer .static-text{
+  color: var(--text-color);
   size: 20px;
   font-weight: 400;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -366,7 +366,7 @@ align-items: center;
   font-weight: 500;
   position: relative;
   top: 0;
-  animation: slide 5s steps(4) infinite; 
+  animation: slide 5s steps(4) infinite;
 
 }
 @keyframes slide{
@@ -395,7 +395,7 @@ align-items: center;
 }
 @keyframes animate{
   40%,60%{
-    left: calc(100%+30px);
+    left: calc(100% + 30px);
   }
   100%{
     right: 0;
@@ -403,13 +403,13 @@ align-items: center;
 }
 /* END HERE */
 .home__img {
-  width: 160px;
+  width: 300px;
 }
 
 .home__handle {
   justify-self: center;
-  width: 190px;
-  height: 293px;
+  width: 318px;
+  height: 344px;
   background: linear-gradient(
     180deg,
     hsla(var(--first-hue), var(--sat), var(--lig), 0.5),
@@ -793,6 +793,12 @@ align-items: center;
   margin-bottom: 1rem;
 }
 
+.testimonial__img.brac{
+  width: 60px;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
 .testimonial__name {
   font-size: var(--normal-font-size);
   font-weight: var(--font-medium);
@@ -999,12 +1005,12 @@ align-items: center;
   }
 
   .home__handle {
-    width: 150px;
-    height: 253px;
+    width: 318px;
+    height: 344px;
   }
 
   .home__img {
-    width: 130px;
+    width: 300px;
   }
 
   .about__info {
@@ -1178,12 +1184,12 @@ align-items: center;
   }
 
   .home__handle {
-    width: 290px;
-    height: 400px;
+    width: 318px;
+    height: 344px;
   }
 
   .home__img {
-    width: 220px;
+    width: 300px;
   }
   .home__social-link {
     padding: 0.4rem;
