@@ -258,8 +258,10 @@ function renderContent() {
   // Re-run Typewriter logic
   initTypewriter();
   
-  // Initialize dynamic interactive visual animations
-  initFuturisticAnimations();
+  // Initialize dynamic interactive visual animations (skip during first load preloader phase)
+  if (!document.body.classList.contains("loading")) {
+    initFuturisticAnimations();
+  }
 }
 
 /*=============== TYPEWRITER EFFECT ===============*/
@@ -537,6 +539,25 @@ function runPreloader() {
 
   if (!fill || !perc || !status || !preloader) return;
 
+  // Dynamically load heavy icon stylesheets asynchronously to exclude them from critical render path
+  const loadDeferredStyles = () => {
+    const styles = [
+      'assets/css/boxicons.min.css',
+      'assets/css/devicon.min.css'
+    ];
+    styles.forEach(src => {
+      if (!document.querySelector(`link[href="${src}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = src;
+        document.head.appendChild(link);
+      }
+    });
+  };
+
+  // Start style load immediately in background
+  loadDeferredStyles();
+
   const logs = [
     "Initializing Core...",
     "Loading Brand Assets...",
@@ -552,16 +573,20 @@ function runPreloader() {
       progress = 100;
       clearInterval(interval);
 
-      fill.style.width = "100%";
+      fill.style.transform = "scaleX(1)";
       perc.textContent = "100%";
       status.textContent = "System ready.";
 
       setTimeout(() => {
         preloader.classList.add("preloader--hidden");
         document.body.classList.remove("loading");
+        
+        // Defer CPU-heavy observers and interactive animations initialization by 250ms
+        setTimeout(initFuturisticAnimations, 250);
       }, 400);
     } else {
-      fill.style.width = `${progress}%`;
+      // GPU compositor accelerated scaling (no reflows/repaints)
+      fill.style.transform = `scaleX(${progress / 100})`;
       perc.textContent = `${progress}%`;
 
       const logIndex = Math.min(Math.floor(progress / 20), logs.length - 1);
@@ -586,29 +611,53 @@ function initFuturisticAnimations() {
     let targetX = 0, targetY = 0;
     let currentX = 0, currentY = 0;
     let isMoving = false;
+    let rafId = null;
+    let isIdle = true;
+
+    // Smooth physics loop
+    function updateGlow() {
+      const dx = targetX - currentX;
+      const dy = targetY - currentY;
+      
+      // If pointer catches up completely, halt animation frame loop to free main thread
+      if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+        currentX = targetX;
+        currentY = targetY;
+        glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate3d(-50%, -50%, 0)`;
+        rafId = null;
+        isIdle = true;
+        return;
+      }
+
+      currentX += dx * 0.12;
+      currentY += dy * 0.12;
+      glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate3d(-50%, -50%, 0)`;
+      
+      rafId = requestAnimationFrame(updateGlow);
+    }
 
     document.addEventListener("mousemove", e => {
       targetX = e.clientX;
       targetY = e.clientY;
-      if (!isMoving) {
+      if (isIdle) {
         glow.style.opacity = "1";
-        isMoving = true;
+        isIdle = false;
+        if (!rafId) {
+          rafId = requestAnimationFrame(updateGlow);
+        }
       }
     });
-
-    // Smooth physics loop
-    function updateGlow() {
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-      glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate3d(-50%, -50%, 0)`;
-      requestAnimationFrame(updateGlow);
-    }
-    updateGlow();
 
     document.addEventListener("mouseleave", () => {
       glow.style.opacity = "0";
       isMoving = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      isIdle = true;
     });
+    
     document.addEventListener("mouseenter", () => {
       glow.style.opacity = "1";
     });
