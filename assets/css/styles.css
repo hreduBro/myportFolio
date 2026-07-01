@@ -2084,3 +2084,63 @@ img {
     display: none; /* Hide badges if screen is too narrow to avoid overlapping */
   }
 }
+
+/*=============== FUTURISTIC INTERACTIVE ANIMATIONS ===============*/
+.pointer-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(var(--first-color-rgb), 0.12) 0%, rgba(var(--first-color-rgb), 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-1000px, -1000px, 0);
+  will-change: transform;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+[data-theme="light"] .pointer-glow {
+  background: radial-gradient(circle, rgba(var(--first-color-rgb), 0.08) 0%, rgba(var(--first-color-rgb), 0) 70%);
+  mix-blend-mode: multiply;
+}
+
+/* Futuristic Reveal on Scroll */
+.reveal-element {
+  opacity: 0 !important;
+  transform: translate3d(0, 30px, 0) scale(0.96) !important;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.reveal-element--visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* Tilt preservation and transitions */
+.project__card, .about__profile-card, .services__card, .contact__card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project__card:hover, .about__profile-card:hover, .services__card:hover, .contact__card:hover {
+  box-shadow: 0 20px 40px rgba(var(--first-color-rgb), 0.15);
+  border-color: rgba(var(--first-color-rgb), 0.35);
+}
+
+/* Stagger transition delays for grid contents */
+.reveal-element:nth-child(2) { transition-delay: 0.1s !important; }
+.reveal-element:nth-child(3) { transition-delay: 0.2s !important; }
+.reveal-element:nth-child(4) { transition-delay: 0.3s !important; }
+.reveal-element:nth-child(5) { transition-delay: 0.4s !important; }
+.reveal-element:nth-child(6) { transition-delay: 0.5s !important; }
+
+/* Smooth transition for magnetic items */
+.home__social-link, .nav__link, .theme-button, .button, .contact__button {
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}

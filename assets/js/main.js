@@ -248,6 +248,9 @@ function renderContent() {
   
   // Re-run Typewriter logic
   initTypewriter();
+  
+  // Initialize dynamic interactive visual animations
+  initFuturisticAnimations();
 }
 
 /*=============== TYPEWRITER EFFECT ===============*/
@@ -501,3 +504,116 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/*=============== FUTURISTIC INTERACTIVE ANIMATIONS ===============*/
+function initFuturisticAnimations() {
+  const isMouse = window.matchMedia("(pointer: fine)").matches;
+
+  // 1. Interactive Pointer Glow (Mouse Tracking)
+  if (isMouse) {
+    let glow = document.querySelector(".pointer-glow");
+    if (!glow) {
+      glow = document.createElement("div");
+      glow.className = "pointer-glow";
+      document.body.appendChild(glow);
+    }
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    let isMoving = false;
+
+    document.addEventListener("mousemove", e => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!isMoving) {
+        glow.style.opacity = "1";
+        isMoving = true;
+      }
+    });
+
+    // Smooth physics loop
+    function updateGlow() {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate3d(-50%, -50%, 0)`;
+      requestAnimationFrame(updateGlow);
+    }
+    updateGlow();
+
+    document.addEventListener("mouseleave", () => {
+      glow.style.opacity = "0";
+      isMoving = false;
+    });
+    document.addEventListener("mouseenter", () => {
+      glow.style.opacity = "1";
+    });
+  }
+
+  // 2. 3D Tilt Effect on hover
+  if (isMouse) {
+    const tiltCards = document.querySelectorAll(".project__card, .about__profile-card, .services__card, .contact__card");
+    tiltCards.forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xc = rect.width / 2;
+        const yc = rect.height / 2;
+        
+        const angleX = (yc - y) / 18;
+        const angleY = (x - xc) / 18;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+      
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+    });
+  }
+
+  // 3. Magnetic Hover Attraction
+  if (isMouse) {
+    const magneticItems = document.querySelectorAll(".home__social-link, .nav__link, .theme-button, .button, .contact__button");
+    magneticItems.forEach(item => {
+      item.addEventListener("mousemove", e => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        item.style.transform = `translate3d(${x * 0.3}px, ${y * 0.3}px, 0)`;
+      });
+      
+      item.addEventListener("mouseleave", () => {
+        item.style.transform = `translate3d(0, 0, 0)`;
+      });
+    });
+  }
+
+  // 4. Reveal on Scroll (Intersection Observer)
+  const revealTargets = document.querySelectorAll(
+    ".home__data, .home__profile-wrapper, .about__profile-card, .about__content, " +
+    ".services__card, .project__card, .testimonial__card, .faq__item, .contact__card, " +
+    ".contact__form, .section__title, .section__subtitle"
+  );
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-element--visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: "0px 0px -20px 0px"
+  });
+
+  revealTargets.forEach(el => {
+    if (!el.classList.contains("reveal-element")) {
+      el.classList.add("reveal-element");
+    }
+    observer.observe(el);
+  });
+}
