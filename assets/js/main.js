@@ -1,89 +1,381 @@
-/*=============== CHANGE BACKGROUND HEADER ===============*/
-function scrollHeader() {
-  const header = document.getElementById("header");
-  // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-  if (this.scrollY >= 50) header.classList.add("scroll-header");
-  else header.classList.remove("scroll-header");
+/*=============== GLOBAL STATE & UTILITIES ===============*/
+let activeLang = localStorage.getItem("portfolio-lang") || "en";
+let portfolioData = typeof rawPortfolioData !== 'undefined' ? rawPortfolioData : null;
+
+// Traverse nested object keys (e.g., "nav.home")
+function getTranslationByKey(obj, keyPath) {
+  if (!obj) return "";
+  return keyPath.split('.').reduce((acc, part) => acc && acc[part], obj);
 }
-window.addEventListener("scroll", scrollHeader);
 
-/*=============== SERVICES MODAL ===============*/
-// Get the modal
-const modalViews = document.querySelectorAll(".services__modal"),
-  modalBtns = document.querySelectorAll(".services__button"),
-  modalClose = document.querySelectorAll(".services__modal-close");
+/*=============== DYNAMIC CONTENT RENDERING ===============*/
+function renderContent() {
+  if (!portfolioData) return;
 
-// When the user clicks on the button, open the modal
-let modal = function (modalClick) {
-  modalViews[modalClick].classList.add("active-modal");
-};
+  const langData = portfolioData.i18n[activeLang];
 
-modalBtns.forEach((mb, i) => {
-  mb.addEventListener("click", () => {
-    modal(i);
+  // 1. Update static labels (text & placeholders)
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const translation = getTranslationByKey(langData, key);
+    if (translation !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = translation;
+      } else {
+        if (translation.includes('<') && translation.includes('>')) {
+          el.innerHTML = translation;
+        } else {
+          el.textContent = translation;
+        }
+      }
+    }
   });
-});
 
-modalClose.forEach((mc) => {
-  mc.addEventListener("click", () => {
-    modalViews.forEach((mv) => {
-      mv.classList.remove("active-modal");
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const translation = getTranslationByKey(langData, key);
+    if (translation !== undefined) {
+      el.placeholder = translation;
+    }
+  });
+
+  // Update active language indicator text
+  document.getElementById("active-lang-text").textContent = activeLang.toUpperCase();
+
+  // 2. Render Projects Grid
+  const projectsGrid = document.getElementById("projects-grid");
+  projectsGrid.innerHTML = "";
+  
+  portfolioData.projects.forEach(project => {
+    const projLang = project[activeLang];
+    const projectCard = document.createElement("article");
+    projectCard.className = `project__card project-${project.category}`;
+    projectCard.setAttribute("data-category", project.category);
+    
+    projectCard.innerHTML = `
+      <div class="project__img-wrapper">
+        <img src="${project.image}" alt="${projLang.title}" class="project__img" loading="lazy" width="360" height="225">
+      </div>
+      <div class="project__content">
+        <span class="project__tag">${project.category}</span>
+        <h3 class="project__title">${projLang.title}</h3>
+        <p class="project__desc">${projLang.description}</p>
+        <a href="${project.demo_url}" class="project__link">
+          ${langData.projects_section.demo} <i class='bx bx-right-arrow-alt'></i>
+        </a>
+      </div>
+    `;
+    projectsGrid.appendChild(projectCard);
+  });
+
+  // 3. Render Services Grid
+  const servicesGrid = document.getElementById("services-grid");
+  servicesGrid.innerHTML = "";
+
+  portfolioData.services.forEach(service => {
+    const servLang = service[activeLang];
+    const featuresList = servLang.features.map(f => `
+      <li class="services__item">
+        <i class='bx bx-check-circle'></i>
+        <span>${f}</span>
+      </li>
+    `).join("");
+
+    const serviceCard = document.createElement("div");
+    serviceCard.className = "services__card";
+    serviceCard.innerHTML = `
+      <div class="services__icon-wrapper">
+        <i class="${service.icon}"></i>
+      </div>
+      <h3 class="services__card-title">${servLang.title}</h3>
+      <p class="services__card-desc">${servLang.description}</p>
+      <ul class="services__list">
+        ${featuresList}
+      </ul>
+    `;
+    servicesGrid.appendChild(serviceCard);
+  });
+
+  // 4. Render Stats counter grid
+  const statsGrid = document.getElementById("stats-grid");
+  statsGrid.innerHTML = "";
+  
+  portfolioData.stats.forEach(stat => {
+    const statLabel = getTranslationByKey(langData, stat.label_key);
+    const statItem = document.createElement("div");
+    statItem.className = "stats__item";
+    statItem.innerHTML = `
+      <span class="stats__number">${stat.value}</span>
+      <span class="stats__label">${statLabel}</span>
+    `;
+    statsGrid.appendChild(statItem);
+  });
+
+  // 5. Render Social Links & Profile in About section
+  const aboutSocials = document.getElementById("about-socials");
+  const footerSocials = document.getElementById("footer-socials");
+  aboutSocials.innerHTML = "";
+  footerSocials.innerHTML = "";
+
+  const socials = portfolioData.personal.socials;
+  
+  const socialIcons = [
+    { key: "linkedin", icon: "bx bxl-linkedin" },
+    { key: "github", icon: "bx bxl-github" },
+    { key: "fiverr", icon: "bx bx-globe" },
+    { key: "whatsapp", icon: "bx bxl-whatsapp" }
+  ];
+
+  socialIcons.forEach(soc => {
+    if (socials[soc.key]) {
+      const aAbout = document.createElement("a");
+      aAbout.href = socials[soc.key];
+      aAbout.target = "_blank";
+      aAbout.ariaLabel = soc.key;
+      aAbout.innerHTML = `<i class='${soc.icon}'></i>`;
+      aboutSocials.appendChild(aAbout);
+
+      const aFooter = document.createElement("a");
+      aFooter.href = socials[soc.key];
+      aFooter.target = "_blank";
+      aFooter.ariaLabel = soc.key;
+      aFooter.innerHTML = `<i class='${soc.icon}'></i>`;
+      footerSocials.appendChild(aFooter);
+    }
+  });
+
+  // 6. Render Tech Stack Badges (Infinite Scrolling Marquee)
+  const techStackGrid = document.getElementById("tech-stack-grid");
+  techStackGrid.innerHTML = "";
+  
+  // Duplicate three times for seamless scroll loop
+  const fullStack = [...portfolioData.tech_stack, ...portfolioData.tech_stack, ...portfolioData.tech_stack];
+  fullStack.forEach(tech => {
+    const badge = document.createElement("div");
+    badge.className = "tech-icon-badge";
+    badge.innerHTML = `<i class='${tech.icon}'></i>`;
+    badge.title = tech.name;
+    techStackGrid.appendChild(badge);
+  });
+
+  // 7. Render Experience timeline
+  const experienceList = document.getElementById("experience-list");
+  experienceList.innerHTML = "";
+  
+  portfolioData.experiences.forEach(exp => {
+    const expLang = exp[activeLang];
+    const expItem = document.createElement("div");
+    expItem.className = "exp-item";
+    expItem.innerHTML = `
+      <span class="exp-role">${expLang.role}</span>
+      <span class="exp-company">${expLang.company}</span>
+      <span class="exp-year">${exp.year}</span>
+    `;
+    experienceList.appendChild(expItem);
+  });
+
+  // 8. Render Testimonials Section
+  const testimonialsGrid = document.getElementById("testimonials-grid");
+  testimonialsGrid.innerHTML = "";
+
+  portfolioData.testimonials.forEach(test => {
+    const testLang = test[activeLang];
+    const card = document.createElement("div");
+    card.className = "testimonial__card";
+    card.innerHTML = `
+      <p class="testimonial__text">"${testLang.text}"</p>
+      <div class="testimonial__author">
+        <div class="testimonial__author-info">
+          <img src="${test.avatar_url}" alt="${testLang.name}" class="testimonial__img">
+          <div>
+            <h4 class="testimonial__name">${testLang.name}</h4>
+            <span class="testimonial__role">${testLang.role}</span>
+          </div>
+        </div>
+        <img src="${test.logo_url}" alt="${testLang.name} Company Logo" class="testimonial__company-logo">
+      </div>
+    `;
+    testimonialsGrid.appendChild(card);
+  });
+
+  // 9. Render FAQs Accordion with mutual exclusion fallback
+  const faqsAccordion = document.getElementById("faqs-accordion");
+  faqsAccordion.innerHTML = "";
+
+  portfolioData.faqs.forEach((faq, index) => {
+    const faqLang = faq[activeLang];
+    const faqItem = document.createElement("details");
+    faqItem.className = "faq__item";
+    faqItem.setAttribute("name", "faq-accordion");
+    if (index === 0) {
+      faqItem.setAttribute("open", "");
+    }
+
+    faqItem.innerHTML = `
+      <summary class="faq__question">
+        <span>${faqLang.question}</span>
+        <i class='bx bx-plus faq__toggle-icon'></i>
+      </summary>
+      <div class="faq__answer">
+        <p>${faqLang.answer}</p>
+      </div>
+    `;
+    faqsAccordion.appendChild(faqItem);
+  });
+
+  // Support details toggle mutual exclusion programmatically for older browsers
+  const detailsElements = faqsAccordion.querySelectorAll(".faq__item");
+  detailsElements.forEach(details => {
+    details.addEventListener("toggle", (e) => {
+      if (details.open) {
+        detailsElements.forEach(other => {
+          if (other !== details) {
+            other.removeAttribute("open");
+          }
+        });
+      }
     });
   });
-});
 
-/*=============== MIXITUP FILTER PORTFOLIO ===============*/
+  // 10. Update footer copyright year dynamically
+  const currentYear = new Date().getFullYear();
+  document.getElementById("footer-copy").innerHTML = `&#169; ${currentYear} Hredoy Sen. ${langData.footer.rights}`;
 
-let mixer = mixitup(".work__container", {
-  selectors: {
-    target: ".work__card",
-  },
-  animation: {
-    duration: 300,
-  },
-});
-
-/* Link active work */
-const workLinks = document.querySelectorAll(".work__item");
-
-function activeWork(workLink) {
-  workLinks.forEach((wl) => {
-    wl.classList.remove("active-work");
-  });
-  workLink.classList.add("active-work");
+  // Re-run filter projects check
+  filterProjects(activeFilter);
+  
+  // Re-run Typewriter logic
+  initTypewriter();
 }
 
-workLinks.forEach((wl) => {
-  wl.addEventListener("click", () => {
-    activeWork(wl);
+/*=============== TYPEWRITER EFFECT ===============*/
+let typewriterTimeout = null;
+function initTypewriter() {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+  }
+
+  const staticTextEl = document.getElementById("home-static-text");
+  const dynamicTextEl = document.getElementById("home-dynamic-text");
+  
+  if (!staticTextEl || !dynamicTextEl || !portfolioData) return;
+
+  const roles = activeLang === "en" 
+    ? ["React Developer", "Frontend Engineer", "Angular Expert", "UX Designer"] 
+    : ["রিয়েক্ট ডেভেলপার", "ফ্রন্টএন্ড ইঞ্জিনিয়ার", "অ্যাঙ্গুলার এক্সপার্ট", "ইউআই/ইউএক্স ডিজাইনার"];
+    
+  staticTextEl.textContent = activeLang === "en" ? "I am a" : "আমি একজন";
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typeSpeed = 100;
+  const eraseSpeed = 50;
+  const delayBetweenWords = 2000;
+
+  function type() {
+    const currentWord = roles[roleIndex];
+    
+    if (isDeleting) {
+      dynamicTextEl.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      dynamicTextEl.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let nextTimeoutSpeed = isDeleting ? eraseSpeed : typeSpeed;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      isDeleting = true;
+      nextTimeoutSpeed = delayBetweenWords; // Pause before erasing
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      nextTimeoutSpeed = 500; // Pause briefly before typing next
+    }
+
+    typewriterTimeout = setTimeout(type, nextTimeoutSpeed);
+  }
+
+  type();
+}
+
+/*=============== PROJECTS FILTER LOGIC ===============*/
+let activeFilter = "all";
+
+function filterProjects(category) {
+  activeFilter = category;
+  document.querySelectorAll(".projects__filter-btn").forEach(btn => {
+    if (btn.getAttribute("data-filter") === category) {
+      btn.classList.add("active-filter");
+    } else {
+      btn.classList.remove("active-filter");
+    }
   });
+
+  const cards = document.querySelectorAll(".project__card");
+  cards.forEach(card => {
+    const cardCat = card.getAttribute("data-category");
+    if (category === "all" || cardCat === category) {
+      card.classList.remove("project-hidden");
+    } else {
+      card.classList.add("project-hidden");
+    }
+  });
+}
+
+// Bind filter click handlers
+document.querySelector(".projects__filters").addEventListener("click", (e) => {
+  const filterBtn = e.target.closest(".projects__filter-btn");
+  if (!filterBtn) return;
+  const category = filterBtn.getAttribute("data-filter");
+  filterProjects(category);
 });
 
-/*=============== SWIPER TESTIMONIAL ===============*/
+/*=============== THEME LIGHT/DARK OPTIMIZATION ===============*/
+const themeButton = document.getElementById("theme-button");
+const darkTheme = "dark";
+const lightTheme = "light";
 
-let swiperTestimonial = new Swiper(".testimonial__container", {
-  spaceBetween: 24,
-  loop: true,
-  grabCursor: true,
+function getCurrentTheme() {
+  return document.documentElement.getAttribute("data-theme") || darkTheme;
+}
 
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
+function setTheme(theme) {
+  document.documentElement.className = theme + "-theme";
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelector('meta[name="color-scheme"]').content = theme;
+  
+  localStorage.setItem("selected-theme", theme);
+  
+  // Update icon
+  const icon = themeButton.querySelector("i");
+  if (theme === "dark") {
+    icon.className = "bx bx-sun";
+  } else {
+    icon.className = "bx bx-moon";
+  }
+}
 
-  breakpoints: {
-    576: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 48,
-    },
-  },
+themeButton.addEventListener("click", () => {
+  const current = getCurrentTheme();
+  const next = current === darkTheme ? lightTheme : darkTheme;
+  setTheme(next);
 });
 
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+// React to OS system changes if user hasn't explicitly chosen a preference
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!localStorage.getItem("selected-theme")) {
+    setTheme(e.matches ? darkTheme : lightTheme);
+  }
+});
 
+// Set initial theme icon correctly
+const initialTheme = getCurrentTheme();
+setTheme(initialTheme);
+
+/*=============== SCROLL ACTIVE NAVIGATION LINKS ===============*/
 const sections = document.querySelectorAll("section[id]");
 
 function scrollActive() {
@@ -94,140 +386,106 @@ function scrollActive() {
       sectionTop = current.offsetTop - 58,
       sectionId = current.getAttribute("id");
 
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
-    } else {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
+    const navLink = document.querySelector(".nav__menu a[href*=" + sectionId + "]");
+    if (navLink) {
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLink.classList.add("active-link");
+      } else {
+        navLink.classList.remove("active-link");
+      }
     }
   });
 }
 window.addEventListener("scroll", scrollActive);
 
-/*=============== LIGHT DARK THEME ===============*/
-const themeButton = document.getElementById("theme-button");
-const lightTheme = "light-theme";
-const iconTheme = "bx-sun";
+/*=============== SHRINKS NAVBAR ON SCROLL ===============*/
+function scrollHeader() {
+  const header = document.getElementById("header");
+  if (window.scrollY >= 50) {
+    header.classList.add("scroll-header");
+    header.style.backgroundColor = "rgba(var(--first-color-rgb), 0.05)";
+  } else {
+    header.classList.remove("scroll-header");
+    header.style.backgroundColor = "rgba(var(--first-color-rgb), 0.02)";
+  }
+}
+window.addEventListener("scroll", scrollHeader);
 
-// Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem("selected-theme");
-const selectedIcon = localStorage.getItem("selected-icon");
+/*=============== LANGUAGE DROPDOWN CONTROLS ===============*/
+const langBtn = document.getElementById("lang-btn");
+const langDropdown = document.getElementById("lang-dropdown");
 
-// We obtain the current theme that the interface has by validating the light-theme class
-const getCurrentTheme = () =>
-  document.body.classList.contains(lightTheme) ? "dark" : "light";
-const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "bx bx-moon" : "bx bx-sun";
+langBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  langDropdown.classList.toggle("show-dropdown");
+});
 
-// We validate if the user previously chose a topic
-if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the light
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    lightTheme
-  );
-  themeButton.classList[selectedIcon === "bx bx-moon" ? "add" : "remove"](
-    iconTheme
-  );
+document.addEventListener("click", () => {
+  langDropdown.classList.remove("show-dropdown");
+});
+
+langDropdown.addEventListener("click", (e) => {
+  const opt = e.target.closest(".lang-opt");
+  if (!opt) return;
+  const nextLang = opt.getAttribute("data-lang");
+  if (nextLang !== activeLang) {
+    activeLang = nextLang;
+    localStorage.setItem("portfolio-lang", activeLang);
+    renderContent();
+  }
+});
+
+/*=============== STARTUP DATA INITIALIZATION ===============*/
+async function initPortfolio() {
+  try {
+    if (!portfolioData) {
+      const response = await fetch("assets/data/portfolio.json");
+      if (!response.ok) {
+        throw new Error(`Failed to load config: ${response.statusText}`);
+      }
+      portfolioData = await response.json();
+    }
+    
+    // Inject email and contact link directly in Talk To Me cards
+    const contactCards = document.getElementById("contact-cards");
+    const socials = portfolioData.personal.socials;
+    const cardsLang = portfolioData.i18n[activeLang].contact_section;
+    
+    // Update contact cards template dynamically
+    contactCards.innerHTML = `
+      <div class="contact__card">
+        <i class='bx bx-mail-send contact__card-icon'></i>
+        <h3 class="contact__card-title">${cardsLang.card_email}</h3>
+        <span class="contact__card-data">${socials.email}</span>
+        <a href="mailto:${socials.email}" target="_blank" class="contact__button">
+          ${cardsLang.write_me} <i class='bx bx-right-arrow-alt'></i>
+        </a>
+      </div>
+
+      <div class="contact__card">
+        <i class='bx bxl-whatsapp contact__card-icon'></i>
+        <h3 class="contact__card-title">${cardsLang.card_whatsapp}</h3>
+        <span class="contact__card-data">+880-1319-839-449</span>
+        <a href="${socials.whatsapp}" target="_blank" class="contact__button">
+          ${cardsLang.write_me} <i class='bx bx-right-arrow-alt'></i>
+        </a>
+      </div>
+
+      <div class="contact__card">
+        <i class='bx bxl-linkedin contact__card-icon'></i>
+        <h3 class="contact__card-title">${cardsLang.card_linkedin}</h3>
+        <span class="contact__card-data">@hredoy-sen</span>
+        <a href="${socials.linkedin}" target="_blank" class="contact__button">
+          ${cardsLang.write_me} <i class='bx bx-right-arrow-alt'></i>
+        </a>
+      </div>
+    `;
+    
+    renderContent();
+  } catch (error) {
+    console.error("Initialization Error:", error);
+  }
 }
 
-// Activate / deactivate the theme manually with the button
-themeButton.addEventListener("click", () => {
-  // Add or remove the light / icon theme
-  document.body.classList.toggle(lightTheme);
-  themeButton.classList.toggle(iconTheme);
-  // We save the theme and the current icon that the user chose
-  localStorage.setItem("selected-theme", getCurrentTheme());
-  localStorage.setItem("selected-icon", getCurrentIcon());
-});
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrollReveal({
-  origin: "top",
-  distance: "60px",
-  duration: 2500,
-  delay: 400,
-  reset: true,
-});
-
-sr.reveal(`.nav__menu`, {
-  delay: 100,
-  scale: 0.1,
-  origin: "bottom",
-  distance: "300px",
-});
-
-sr.reveal(`.home__data`);
-sr.reveal(`.home__handle`, {
-  delay: 100,
-});
-
-sr.reveal(`.home__social, .home__scroll`, {
-  delay: 100,
-  origin: "bottom",
-});
-
-sr.reveal(`.about__img`, {
-  delay: 100,
-  origin: "left",
-  scale: 0.9,
-  distance: "30px",
-});
-
-sr.reveal(`.about__data, .about__description, .about__button-contact`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "right",
-  distance: "30px",
-});
-
-sr.reveal(`.skills__content`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "bottom",
-  distance: "30px",
-});
-
-sr.reveal(`.services__title, services__button`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "top",
-  distance: "30px",
-});
-
-sr.reveal(`.work__card`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "bottom",
-  distance: "30px",
-});
-
-sr.reveal(`.testimonial__container`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "bottom",
-  distance: "30px",
-});
-
-sr.reveal(`.contact__info, .contact__title-info`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "left",
-  distance: "30px",
-});
-
-sr.reveal(`.contact__form, .contact__title-form`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "right",
-  distance: "30px",
-});
-
-sr.reveal(`.footer, footer__container`, {
-  delay: 100,
-  scale: 0.9,
-  origin: "bottom",
-  distance: "30px",
-});
+// Kick off initialization
+document.addEventListener("DOMContentLoaded", initPortfolio);
