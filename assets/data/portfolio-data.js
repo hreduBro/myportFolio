@@ -1,0 +1,559 @@
+const rawPortfolioData = {
+  "personal": {
+    "name": "Hredoy Sen",
+    "cv_path": "assets/pdf/hredoyFinalCv.pdf",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/hredoy-sen-2a0192212/",
+      "github": "https://github.com/hreduBro",
+      "fiverr": "https://www.fiverr.com/hredoysen/",
+      "email": "hredoy.sen449@gmail.com",
+      "whatsapp": "https://api.whatsapp.com/send?phone=+8801319839449&text=Hey%20there%20Hredoy!"
+    }
+  },
+  "tech_stack": [
+    { "name": "JavaScript", "icon": "devicon-javascript-plain" },
+    { "name": "TypeScript", "icon": "devicon-typescript-plain" },
+    { "name": "React", "icon": "devicon-react-original" },
+    { "name": "Angular", "icon": "devicon-angularjs-plain" },
+    { "name": "Flutter", "icon": "devicon-flutter-plain" },
+    { "name": "Ionic", "icon": "devicon-ionic-original" },
+    { "name": "Python", "icon": "devicon-python-plain" },
+    { "name": "PHP", "icon": "devicon-php-plain" },
+    { "name": "Firebase", "icon": "devicon-firebase-plain" },
+    { "name": "Docker", "icon": "devicon-docker-plain" },
+    { "name": "Figma", "icon": "devicon-figma-plain" },
+    { "name": "Git", "icon": "devicon-git-plain" },
+    { "name": "HTML5", "icon": "devicon-html5-plain" },
+    { "name": "CSS3", "icon": "devicon-css3-plain" }
+  ],
+  "stats": [
+    { "value": "5+", "label_key": "stats.experience" },
+    { "value": "15+", "label_key": "stats.projects" },
+    { "value": "24/7", "label_key": "stats.support" },
+    { "value": "1M+", "label_key": "stats.lines" }
+  ],
+  "projects": [
+    {
+      "id": "project-1",
+      "image": "assets/img/work1.png",
+      "category": "design",
+      "demo_url": "#",
+      "en": {
+        "title": "Graphic Design Portal",
+        "subtitle": "UI Design / Branding",
+        "description": "Premium brand showcase designed to deliver optimal user experience and modern visual elements."
+      },
+      "bn": {
+        "title": "গ্রাফিক ডিজাইন পোর্টাল",
+        "subtitle": "ইউআই ডিজাইন / ব্র্যান্ডিং",
+        "description": "সেরা ব্যবহারকারী অভিজ্ঞতা এবং আধুনিক ভিজ্যুয়াল উপাদান প্রদানের জন্য ডিজাইন করা প্রিমিয়াম ব্র্যান্ড শোকেস।"
+      }
+    },
+    {
+      "id": "project-2",
+      "image": "assets/img/work2.png",
+      "category": "web",
+      "demo_url": "#",
+      "en": {
+        "title": "Presentation Platform",
+        "subtitle": "Web Application",
+        "description": "Interactive slides and presentation hosting dashboard with low-latency rendering."
+      },
+      "bn": {
+        "title": "প্রেজেন্টেশন প্লাটফর্ম",
+        "subtitle": "ওয়েব অ্যাপ্লিকেশন",
+        "description": "কম ল্যাটেন্সি রেন্ডারিং সহ ইন্টারঅ্যাক্টিভ স্লাইড এবং প্রেজেন্টেশন হোস্টিং ড্যাশবোর্ড।"
+      }
+    },
+    {
+      "id": "project-3",
+      "image": "assets/img/work3.png",
+      "category": "design",
+      "demo_url": "#",
+      "en": {
+        "title": "UI Components Kit",
+        "subtitle": "Design System",
+        "description": "A robust, fully accessible design system featuring dark mode and CSS variable configuration."
+      },
+      "bn": {
+        "title": "ইউআই কম্পোনেন্ট কিট",
+        "subtitle": "ডিজাইন সিস্টেম",
+        "description": "ডার্ক মোড এবং সিএসএস ভেরিয়েবল কনফিগারেশন সহ একটি শক্তিশালী, সম্পূর্ণ অ্যাক্সেসযোগ্য ডিজাইন সিস্টেম।"
+      }
+    },
+    {
+      "id": "project-4",
+      "image": "assets/img/work4.png",
+      "category": "app",
+      "demo_url": "#",
+      "en": {
+        "title": "Material Design App",
+        "subtitle": "Mobile Interface",
+        "description": "Cross-platform mobile application following Google's Material Design guidelines."
+      },
+      "bn": {
+        "title": "মেটেরিয়াল ডিজাইন অ্যাপ",
+        "subtitle": "মোবাইল ইন্টারফেস",
+        "description": "গুগলের মেটেরিয়াল ডিজাইন নির্দেশিকা অনুসরণ করে ক্রস-প্ল্যাটফর্ম মোবাইল অ্যাপ্লিকেশন।"
+      }
+    },
+    {
+      "id": "project-5",
+      "image": "assets/img/work5.png",
+      "category": "web",
+      "demo_url": "#",
+      "en": {
+        "title": "Social Post Dashboard",
+        "subtitle": "Web Application",
+        "description": "A analytics dashboard for managing and scheduling social media posts dynamically."
+      },
+      "bn": {
+        "title": "সোশ্যাল পোস্ট ড্যাশবোর্ড",
+        "subtitle": "ওয়েব অ্যাপ্লিকেশন",
+        "description": "ডাইনামিকভাবে সোশ্যাল মিডিয়া পোস্টগুলি পরিচালনা এবং সময়সূচী করার জন্য একটি অ্যানালিটিক্স ড্যাশবোর্ড।"
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "service-web",
+      "icon": "bx bx-code-alt",
+      "en": {
+        "title": "Web Development",
+        "description": "Build fast, scalable, and secure web apps tailored for performance.",
+        "features": [
+          "Responsive Layouts (Mobile, Tablet, Desktop)",
+          "Modern Framework Integrations (React, Angular)",
+          "SEO Optimization & Metadata Structure",
+          "Fast Page Loads and Optimized Core Web Vitals"
+        ]
+      },
+      "bn": {
+        "title": "ওয়েব ডেভেলপমেন্ট",
+        "description": "পারফরম্যান্সের জন্য তৈরি দ্রুত, স্কেলেবল এবং সুরক্ষিত ওযেব অ্যাপস তৈরি করি।",
+        "features": [
+          "রেসপনসিভ লেআউট (মোবাইল, ট্যাবলেট, ডেস্কটপ)",
+          "আধুনিক ফ্রেমওয়ার্ক ইন্টিগ্রেশন (রিয়েক্ট, অ্যাঙ্গুলার)",
+          "এসইও অপ্টিমাইজেশন ও মেটাডেটা স্ট্রাকচার",
+          "দ্রুত পেজ লোড এবং কোর ওয়েব ভাইটাল অপ্টিমাইজেশন"
+        ]
+      }
+    },
+    {
+      "id": "service-mobile",
+      "icon": "bx bx-devices",
+      "en": {
+        "title": "Cross-Platform Development",
+        "description": "Create seamless experiences on mobile platforms using modern hybrid technologies.",
+        "features": [
+          "React Native and Flutter mobile applications",
+          "Shared codebase for high development velocity",
+          "Native API integrations & performance tuning",
+          "Store deployment support (App Store, Play Store)"
+        ]
+      },
+      "bn": {
+        "title": "ক্রস-প্ল্যাটফর্ম ডেভেলপমেন্ট",
+        "description": "আধুনিক হাইব্রিড প্রযুক্তি ব্যবহার করে মোবাইল প্ল্যাটফর্মে নির্বিঘ্ন অভিজ্ঞতা তৈরি করি।",
+        "features": [
+          "রিয়েক্ট নেটিভ এবং ফ্লাটার মোবাইল অ্যাপ্লিকেশন",
+          "উচ্চ ডেভেলপমেন্ট গতির জন্য শেয়ার্ড কোডবেস",
+          "নেটিভ এপিআই ইন্টিগ্রেশন এবং পারফরম্যান্স টিউনিং",
+          "স্টোর ডেপ্লয়মেন্ট সাপোর্ট (অ্যাপ স্টোর, প্লে স্টোর)"
+        ]
+      }
+    },
+    {
+      "id": "service-uiux",
+      "icon": "bx bx-select-multiple",
+      "en": {
+        "title": "UI/UX Design",
+        "description": "Design visual journeys that satisfy market needs and enhance user conversions.",
+        "features": [
+          "Interactive prototyping & user testing flows",
+          "Modern typography & color systems",
+          "Vector illustrations and custom SVG creations",
+          "Figma design layouts converted into production code"
+        ]
+      },
+      "bn": {
+        "title": "ইউআই/ইউএক্স ডিজাইন",
+        "description": "বাজারের চাহিদা পূরণ করে এবং ব্যবহারকারী রূপান্তর বাড়ায় এমন ভিজ্যুয়াল জার্নি ডিজাইন করি।",
+        "features": [
+          "ইন্টারেক্টিভ প্রোটোটাইপিং এবং ব্যবহারকারী পরীক্ষার ফ্লো",
+          "আধুনিক টাইপোগ্রাফি এবং কালার সিস্টেম",
+          "ভেক্টর ইলাস্ট্রেশন এবং কাস্টম এসভিজি তৈরি",
+          "ফিগমা ডিজাইন লেআউট প্রোডাকশন কোডে রূপান্তর"
+        ]
+      }
+    }
+  ],
+  "experiences": [
+    {
+      "year": "Apr 2026 - Present",
+      "en": {
+        "role": "Senior Software Engineer",
+        "company": "BRAC IT (Full-time)"
+      },
+      "bn": {
+        "role": "সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার",
+        "company": "ব্র্যাক আইটি (ফুল-টাইম)"
+      }
+    },
+    {
+      "year": "Jan 2023 - Apr 2026",
+      "en": {
+        "role": "Software Engineer",
+        "company": "BRAC IT (Full-time)"
+      },
+      "bn": {
+        "role": "সফটওয়্যার ইঞ্জিনিয়ার",
+        "company": "ব্র্যাক আইটি (ফুল-টাইম)"
+      }
+    },
+    {
+      "year": "Oct 2022 - Jan 2023",
+      "en": {
+        "role": "Software Intern",
+        "company": "BRAC IT (Internship)"
+      },
+      "bn": {
+        "role": "সফটওয়্যার ইন্টার্ন",
+        "company": "ব্র্যাক আইটি (ইন্টার্নশিপ)"
+      }
+    },
+    {
+      "year": "Apr 2022 - Sep 2022",
+      "en": {
+        "role": "Software Trainee",
+        "company": "Wipro (Contract)"
+      },
+      "bn": {
+        "role": "সফটওয়্যার ট্রেইনি",
+        "company": "উইপ্রো (চুক্তিভিত্তিক)"
+      }
+    },
+    {
+      "year": "Dec 2021 - Mar 2022",
+      "en": {
+        "role": "Frontend Developer",
+        "company": "Tech Mahindra (Contract - Remote)"
+      },
+      "bn": {
+        "role": "ফ্রন্টএন্ড ডেভেলপার",
+        "company": "টেক মাহিন্দ্রা (চুক্তিভিত্তিক - রিমোট)"
+      }
+    },
+    {
+      "year": "Jul 2021 - Nov 2021",
+      "en": {
+        "role": "Student Intern",
+        "company": "Micropro Infotech (Internship)"
+      },
+      "bn": {
+        "role": "স্টুডেন্ট ইন্টার্ন",
+        "company": "মাইক্রোপ্রো ইনফোটেক (ইন্টার্নশিপ)"
+      }
+    }
+  ],
+  "testimonials": [
+    {
+      "logo_class": "jabali",
+      "avatar_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80",
+      "logo_url": "assets/img/Jabali-LogoNoWords-200x205.png",
+      "en": {
+        "name": "Jabali Int.",
+        "role": "Client Representative",
+        "text": "A really good job, all aspects of the project were done well. Very creative and thoughtful. I was very impressed and would recommend this to anyone."
+      },
+      "bn": {
+        "name": "জাবালি ইন্ট.",
+        "role": "ক্লায়েন্ট প্রতিনিধি",
+        "text": "সত্যিই দারুণ কাজ, প্রকল্পের সব দিক খুব ভালোভাবে সম্পন্ন হয়েছে। অত্যন্ত সৃজনশীল এবং চিন্তাশীল। আমি অত্যন্ত অভিভূত এবং যেকোনো কাউকে এটি রিকমেন্ড করব।"
+      }
+    },
+    {
+      "logo_class": "brac",
+      "avatar_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80",
+      "logo_url": "assets/img/BRAC-Mark-Icon-BRAC-UPGI.png",
+      "en": {
+        "name": "Brac HRMS HEAD",
+        "role": "Enterprise Client",
+        "text": "My work has finished in time. I got the delivery of my product before the due date. I am so happy with the work, I can suggest him to you all."
+      },
+      "bn": {
+        "name": "ব্র্যাক এইচআরএমএস প্রধান",
+        "role": "এন্টারপ্রাইজ ক্লায়েন্ট",
+        "text": "আমার কাজ যথাসময়ে শেষ হয়েছে। আমি নির্দিষ্ট সময়ের আগেই আমার প্রোডাক্ট ডেলিভারি পেয়েছি। আমি কাজে খুবই সন্তুষ্ট, আপনাদের সবাইকে তার পরামর্শ দিতে পারি।"
+      }
+    },
+    {
+      "logo_class": "talikhata",
+      "avatar_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80",
+      "logo_url": "assets/img/unnamed.png",
+      "en": {
+        "name": "Talikhata CTO",
+        "role": "Tech Partner",
+        "text": "A very humble and supportive nature, very punctual to his work. I got my product delivery at the right time. I am very impressed and would recommend him."
+      },
+      "bn": {
+        "name": "তালিকাতা সিটিও",
+        "role": "প্রযুক্তি অংশীদার",
+        "text": "অত্যন্ত নম্র এবং সহযোগী স্বভাব, তার কাজের প্রতি অত্যন্ত পাঙ্কচুয়াল। আমি সঠিক সময়ে আমার প্রোডাক্ট ডেলিভারি পেয়েছি। আমি খুব মুগ্ধ এবং তার কথা রিকমেন্ড করছি।"
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "en": {
+        "question": "What kind of projects do you work on?",
+        "answer": "I specialize in web development, cross-platform mobile applications (React Native / Flutter), and UI/UX design. I work on everything from prototypes to enterprise production-ready software systems."
+      },
+      "bn": {
+        "question": "আপনি কী ধরনের প্রকল্পে কাজ করেন?",
+        "answer": "আমি ওয়েব ডেভেলপমেন্ট, ক্রস-প্ল্যাটফর্ম মোবাইল অ্যাপ্লিকেশন (রিয়েক্ট নেটিভ / ফ্লাটার) এবং ইউআই/ইউএক্স ডিজাইনে পারদর্শী। আমি প্রোটোটাইপ থেকে শুরু করে এন্টারপ্রাইজ প্রোডাকশন-রেডি সফটওয়্যার সিস্টেম পর্যন্ত সব ধরণের কাজ করি।"
+      }
+    },
+    {
+      "id": "faq-2",
+      "en": {
+        "question": "Do you take on freelance or full-time work?",
+        "answer": "Yes, I am open to freelance projects and remote full-time positions. I am actively seeking global opportunities where I can contribute my frontend engineering skills."
+      },
+      "bn": {
+        "question": "আপনি কি ফ্রিল্যান্স বা ফুল-টাইম কাজ করেন?",
+        "answer": "হ্যাঁ, আমি ফ্রিল্যান্স প্রকল্প এবং রিমোট ফুল-টাইম পদের জন্য উন্মুক্ত। আমি সক্রিয়ভাবে গ্লোবাল সুযোগগুলি খুঁজছি যেখানে আমি আমার ফ্রন্টএন্ড ইঞ্জিনিয়ারিং দক্ষতা অবদান রাখতে পারি।"
+      }
+    },
+    {
+      "id": "faq-3",
+      "en": {
+        "question": "How do you approach new projects?",
+        "answer": "My workflow involves three clear steps: (1) Define & Architect - gathering requirements and designing user experiences; (2) Build & Develop - writing clean, modular, and optimized code; (3) Deploy & Support - deploying production-grade code and providing support."
+      },
+      "bn": {
+        "question": "আপনি কীভাবে নতুন প্রজেক্ট শুরু করেন?",
+        "answer": "আমার কাজের প্রক্রিয়া ৩টি স্পষ্ট পদক্ষেপে বিভক্ত: (১) ডিফাইন ও আর্কিটেক্ট - প্রয়োজনীয় তথ্য সংগ্রহ এবং ইউজার এক্সপেরিয়েন্স ডিজাইন; (২) বিল্ড ও ডেভেলপ - পরিষ্কার, মডুলার এবং অপ্টিমাইজড কোড লেখা; (৩) ডেপ্লয় ও সাপোর্ট - প্রোডাকশন-গ্রেড কোড ডেপ্লয় এবং সাপোর্ট প্রদান করা।"
+      }
+    },
+    {
+      "id": "faq-4",
+      "en": {
+        "question": "What is your typical project timeline?",
+        "answer": "Timelines vary depending on complexity. Small landing pages or UI systems can take 1-2 weeks, while full enterprise web applications or cross-platform mobile builds may require 4-8 weeks."
+      },
+      "bn": {
+        "question": "একটি প্রকল্পের জন্য সাধারণত কত সময় লাগে?",
+        "answer": "জটিলতার ওপর নির্ভর করে সময়সীমা পরিবর্তিত হয়। ছোট ল্যান্ডিং পেজ বা ইউআই সিস্টেমের জন্য ১-২ সপ্তাহ লাগতে পারে, অন্যদিকে সম্পূর্ণ এন্টারপ্রাইজ ওয়েব অ্যাপ্লিকেশন বা ক্রস-প্ল্যাটফর্ম মোবাইলের ক্ষেত্রে ৪-৮ সপ্তাহ লাগতে পারে।"
+      }
+    },
+    {
+      "id": "faq-5",
+      "en": {
+        "question": "How can we get started?",
+        "answer": "You can connect with me via email, LinkedIn, or WhatsApp using the links in the contact section. Let's schedule a call to discuss your project requirements in detail!"
+      },
+      "bn": {
+        "question": "আমরা কীভাবে শুরু করতে পারি?",
+        "answer": "আপনি যোগাযোগ সেকশনের লিঙ্কগুলি ব্যবহার করে ইমেল, লিঙ্কডইন বা হোয়াটসঅ্যাপের মাধ্যমে আমার সাথে যুক্ত হতে পারেন। আপনার প্রকল্পের প্রয়োজনীয়তাগুলি বিস্তারিতভাবে আলোচনা করার জন্য একটি কলের সময় নির্ধারণ করা যাক!"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "services": "Services",
+        "testimonials": "Testimonials",
+        "faqs": "FAQs",
+        "about": "About",
+        "contact": "Contact",
+        "book_call": "Book a call",
+        "connect": "Let's Connect"
+      },
+      "hero": {
+        "greeting": "Hi, I'm Hredoy Sen, building",
+        "span_bold": "Digital Experiences.",
+        "subtitle": "From prototypes to production-ready systems, I turn ideas into scalable, user-focused products.",
+        "connect_btn": "Let's connect",
+        "work_btn": "See my work",
+        "trusted_by": "Trusted By:"
+      },
+      "projects_section": {
+        "title": "Recent Projects",
+        "subtitle": "A curated mix of projects - sensible, fast, and future-ready - blending design, code, and creativity.",
+        "filter_all": "All",
+        "filter_app": "App",
+        "filter_web": "Web",
+        "filter_design": "Design",
+        "demo": "Demo"
+      },
+      "services_section": {
+        "title": "Services",
+        "subtitle": "From prototype to full-stack, I build modern products that are scalable and user-friendly."
+      },
+      "process_section": {
+        "title": "Process",
+        "subtitle": "A clear workflow drives each project - from strategy and design to development and post-launch support.",
+        "step_1_title": "Define & Architect",
+        "step_1_desc": "Define goals, map workflows, and lay out clean layouts for scalable UI.",
+        "step_2_title": "Build & Develop",
+        "step_2_desc": "Write clean, robust, and reusable code utilizing state-of-the-art technologies.",
+        "step_3_title": "Deploy & Support",
+        "step_3_desc": "Deploy to production environments and offer active post-launch support.",
+        "banner_text": "Build reliable, user-focused products with expert code."
+      },
+      "about_section": {
+        "title": "About Me",
+        "subtitle": "I build intuitive digital products - scalable, high-performing, and made through collaboration.",
+        "status_tag": "Available for work",
+        "brief_bio": "Create seamless performance interfaces, mobile and develop with the best tech",
+        "bio_greeting": "Hi! I'm Hredoy Sen,",
+        "long_bio": "I am a passionate Senior Software Engineer with expertise in Angular, React, React Native, and Flutter, specializing in frontend development and cross-platform applications. With 5+ years of experience, I have built scalable, user-friendly web and mobile applications, focusing on seamless UX, performance, and maintainability. Currently, I am working as a Sr. Software Engineer at BRAC IT, where I develop enterprise-grade applications and introduce frontend testing practices.",
+        "tech_stack_title": "My Tech Stack:",
+        "experience_title": "Experience"
+      },
+      "faq_section": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to common questions about my work and process."
+      },
+      "testimonials_section": {
+        "title": "Testimonials",
+        "subtitle": "Feedback from clients and collaborators, reflecting my commitment to quality and reliability."
+      },
+      "cta_section": {
+        "title": "Your vision, my expertise. Let's create something <span class=\"cta__highlight\">exceptional.</span>",
+        "subtitle": "Ready to start? Schedule a consultation and let's shape your next project.",
+        "button": "Book a call"
+      },
+      "contact_section": {
+        "title": "Contact Me",
+        "subtitle": "Get in touch",
+        "card_email": "Email",
+        "card_whatsapp": "Whatsapp",
+        "card_linkedin": "LinkedIn",
+        "write_me": "Write Me",
+        "form_title": "Write Me your Message",
+        "form_name": "Name",
+        "form_name_placeholder": "Enter name",
+        "form_email": "Mail",
+        "form_email_placeholder": "Enter email",
+        "form_message": "Message",
+        "form_message_placeholder": "Write your Message",
+        "form_submit": "Send Message"
+      },
+      "footer": {
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookies",
+        "license": "License"
+      },
+      "stats": {
+        "experience": "Years of Experience",
+        "projects": "Projects Completed",
+        "support": "Support Status",
+        "lines": "Coding Hours"
+      }
+    },
+    "bn": {
+      "nav": {
+        "home": "হোম",
+        "projects": "প্রজেক্ট",
+        "services": "সার্ভিস",
+        "testimonials": "টেস্টিমোনিয়াল",
+        "faqs": "প্রশ্নোত্তর",
+        "about": "পরিচিতি",
+        "contact": "যোগাযোগ",
+        "book_call": "কল বুক করুন",
+        "connect": "যোগাযোগ করুন"
+      },
+      "hero": {
+        "greeting": "হাই, আমি হৃদয় সেন, তৈরি করি",
+        "span_bold": "ডিজিটাল অভিজ্ঞতা।",
+        "subtitle": "প্রোটোটাইপ থেকে শুরু করে প্রোডাকশন-রেডি সিস্টেম পর্যন্ত, আমি ধারণাগুলোকে স্কেলেবল, ব্যবহারকারী-কেন্দ্রিক প্রোডাক্টে রূপান্তর করি।",
+        "connect_btn": "যোগাযোগ করুন",
+        "work_btn": "আমার প্রজেক্টগুলো দেখুন",
+        "trusted_by": "বিশ্বস্ত সহযোগী:"
+      },
+      "projects_section": {
+        "title": "সাম্প্রতিক প্রজেক্ট সমূহ",
+        "subtitle": "ডিজাইন, কোড এবং সৃজনশীলতার সমন্বয়ে তৈরি আধুনিক, দ্রুত এবং ভবিষ্যত-মুখী প্রজেক্টের একটি কিউরেটেড সংগ্রহ।",
+        "filter_all": "সবগুলো",
+        "filter_app": "অ্যাপস",
+        "filter_web": "ওয়েব",
+        "filter_design": "ডিজাইন",
+        "demo": "ডেমো দেখুন"
+      },
+      "services_section": {
+        "title": "সেবা সমূহ",
+        "subtitle": "প্রোটোটাইপ থেকে ফুল-স্ট্যাক পর্যন্ত, আমি স্কেলেবল এবং ব্যবহারকারী-বান্ধব আধুনিক প্রোডাক্ট তৈরি করি।"
+      },
+      "process_section": {
+        "title": "কাজের প্রক্রিয়া",
+        "subtitle": "একটি পরিষ্কার ওয়ার্কফ্লো প্রতিটি প্রজেক্ট পরিচালনা করে - কৌশল এবং ডিজাইন থেকে শুরু করে ডেভেলপমেন্ট এবং সাপোর্ট পর্যন্ত।",
+        "step_1_title": "ডিফাইন ও আর্কিটেক্ট",
+        "step_1_desc": "লক্ষ্য নির্ধারণ, ওয়ার্কফ্লো ম্যাপ করা এবং স্কেলেবল ইউআই-এর জন্য পরিষ্কার লেআউট তৈরি করা।",
+        "step_2_title": "বিল্ড ও ডেভেলপ",
+        "step_2_desc": "সর্বাধুনিক প্রযুক্তি ব্যবহার করে পরিষ্কার, শক্তিশালী এবং পুনর্ব্যবহারযোগ্য কোড লেখা।",
+        "step_3_title": "ডেপ্লয় ও সাপোর্ট",
+        "step_3_desc": "প্রোডাকশন এনভায়রনমেন্টে ডেপ্লয় করা এবং সক্রিয় পোস্ট-লঞ্চ সাপোর্ট প্রদান করা।",
+        "banner_text": "দক্ষ কোড দিয়ে নির্ভরযোগ্য, ব্যবহারকারী-কেন্দ্রিক পণ্য তৈরি করুন।"
+      },
+      "about_section": {
+        "title": "আমার সম্পর্কে",
+        "subtitle": "আমি স্কেলেবল, উচ্চ-পারফরম্যান্স এবং সহযোগিতামূলক কাজের মাধ্যমে স্বজ্ঞাত ডিজিটাল প্রোডাক্ট তৈরি করি।",
+        "status_tag": "কাজের জন্য প্রস্তুত",
+        "brief_bio": "সেরা টেক ব্যবহার করে সেরা ইউজার ইন্টারফেস এবং মোবাইল অ্যাপ্লিকেশন তৈরি করি।",
+        "bio_greeting": "হাই! আমি হৃদীয় সেন,",
+        "long_bio": "আমি একজন নিবেদিতপ্রাণ সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার যার অ্যাঙ্গুলার, রিয়েক্ট, রিয়েক্ট নেটিভ এবং ফ্লাটারে বিশেষ দক্ষতা রয়েছে। আমি মূলত ফ্রন্টএন্ড ডেভেলপমেন্ট এবং ক্রস-প্ল্যাটফর্ম অ্যাপ্লিকেশনে কাজ করি। ৫ বছরেরও বেশি অভিজ্ঞতায় আমি সফলভাবে বিভিন্ন স্কেলেবল ওয়েব ও মোবাইল অ্যাপ্লিকেশন তৈরি করেছি। বর্তমানে আমি ব্র্যাক আইটি-তে সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার হিসেবে কর্মরত আছি এবং সেখানে এন্টারপ্রাইজ লেভেলের অ্যাপ্লিকেশন তৈরি করি।",
+        "tech_stack_title": "আমার টেক স্ট্যাক:",
+        "experience_title": "অভিজ্ঞতা"
+      },
+      "faq_section": {
+        "title": "সচরাচর জিজ্ঞাসিত প্রশ্নাবলী",
+        "subtitle": "আমার কাজ এবং কাজের প্রক্রিয়া সম্পর্কে সাধারণ প্রশ্নের উত্তর।"
+      },
+      "testimonials_section": {
+        "title": "টেস্টিমোনিয়াল",
+        "subtitle": "ক্লায়েন্ট এবং সহযোগীদের কাছ থেকে প্রাপ্ত প্রতিক্রিয়া, যা মানসম্পন্ন এবং নির্ভরযোগ্য কাজের প্রতি আমার প্রতিশ্রুতি প্রকাশ করে।"
+      },
+      "cta_section": {
+        "title": "আপনার ভাবনা, আমার দক্ষতা। চলুন <span class=\"cta__highlight\">বিশেষ কিছু</span> তৈরি করি।",
+        "subtitle": "শুরু করতে প্রস্তুত? একটি পরামর্শ সেশনের সময় নির্ধারণ করুন এবং আপনার পরবর্তী প্রজেক্ট শুরু করুন।",
+        "button": "কল বুক করুন"
+      },
+      "contact_section": {
+        "title": "যোগাযোগ করুন",
+        "subtitle": "বার্তা পাঠান",
+        "card_email": "ইমেল",
+        "card_whatsapp": "হোয়াটসঅ্যাপ",
+        "card_linkedin": "লিঙ্কডইন",
+        "write_me": "যোগাযোগ করুন",
+        "form_title": "আপনার বার্তা লিখুন",
+        "form_name": "নাম",
+        "form_name_placeholder": "আপনার নাম লিখুন",
+        "form_email": "ইমেল",
+        "form_email_placeholder": "আপনার ইমেল লিখুন",
+        "form_message": "বার্তা",
+        "form_message_placeholder": "আপনার বার্তা এখানে লিখুন",
+        "form_submit": "বার্তা পাঠান"
+      },
+      "footer": {
+        "rights": "সর্বস্বত্ব সংরক্ষিত।",
+        "privacy": "গোপনীয়তা নীতি",
+        "terms": "ব্যবহারের শর্তাবলী",
+        "cookies": "কুকিজ",
+        "license": "লাইসেন্স"
+      },
+      "stats": {
+        "experience": "বছরের অভিজ্ঞতা",
+        "projects": "সম্পন্ন প্রজেক্ট",
+        "support": "সাপোর্ট স্ট্যাটাস",
+        "lines": "কোডিং আওয়ার"
+      }
+    }
+  }
+};

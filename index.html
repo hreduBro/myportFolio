@@ -4,743 +4,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hredoy Sen | Senior Software Engineer & Frontend Expert</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Hredoy Sen is a passionate Senior Software Engineer and Frontend Expert at BRAC IT, building high-performance web and mobile applications with Angular, React, and Flutter.">
+    <meta name="keywords" content="Hredoy Sen, Senior Software Engineer, Frontend Developer, Angular Expert, React Developer, Mobile App Developer, BRAC IT, portfolio, Bangladesh">
+    <meta name="author" content="Hredoy Sen">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hredoy Sen | Senior Software Engineer & Frontend Expert">
+    <meta property="og:description" content="Senior Software Engineer specializing in Angular, React, React Native, and Flutter. Explore portfolio, projects, and contact info.">
+    <meta property="og:image" content="assets/img/perfil.png">
+    <meta property="og:url" content="https://github.com/hreduBro">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hredoy Sen | Senior Software Engineer & Frontend Expert">
+    <meta name="twitter:description" content="Senior Software Engineer specializing in Angular, React, React Native, and Flutter.">
+    <meta name="twitter:image" content="assets/img/perfil.png">
+
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/H.png">
-    <link rel="icon" type="image/png" sizes="500x500" href="assets/favicons/H.png">
-    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/H.png">
     <link rel="shortcut icon" href="assets/favicons/H.png">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#a789d4">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Icon Font (Boxicons) -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Devicon for Rich Tech Stack Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-
-    <!--=============== CSS ===============-->
+    <!-- Preloads for Performance / LCP optimization -->
+    <link rel="preload" href="assets/img/perfil.png" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/styles.css">
 
-    <title> Hredoy's Portfolio </title>
+    <!-- Theme Initialization to prevent Flash of Unstyled Content (FOUC) -->
+    <meta name="color-scheme" content="light dark">
+    <script>
+        {
+            const savedTheme = localStorage.getItem("selected-theme");
+            const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+            
+            document.documentElement.className = theme + "-theme";
+            document.documentElement.setAttribute('data-theme', theme);
+            document.querySelector('meta[name="color-scheme"]').content = theme === "dark" ? "dark" : "light";
+        }
+    </script>
+    
+    <!-- Schema.org JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hredoy Sen",
+      "jobTitle": "Senior Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "BRAC IT"
+      },
+      "url": "https://github.com/hreduBro",
+      "image": "assets/img/perfil.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/hredoy-sen-2a0192212/",
+        "https://github.com/hreduBro"
+      ]
+    }
+    </script>
 </head>
 
 <body>
-<!--=============== HEADER ===============-->
-<header class="header" id="header">
-    <nav class="nav container">
-        <a href="#" class="nav__logo">Hredoy Sen</a>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo" id="nav-logo">Hredoy Sen</a>
 
-        <div class="nav__menu">
-            <ul class="nav__list">
-                <li class="nav__item ">
-                    <a href="#home" class="nav__link">
-                        <i class='bx bx-home'></i>
-                    </a>
-                </li>
-
-                <li class="nav__item ">
-                    <a href="#about" class="nav__link">
-                        <i class='bx bx-user'></i>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="#skills" class="nav__link">
-                        <i class='bx bx-book'></i>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="#work" class="nav__link">
-                        <i class='bx bx-briefcase-alt-2'></i>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="#contact" class="nav__link">
-                        <i class='bx bx-message-square-dots'></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!--=============== theme change button ===============-->
-        <i class='bx bx-moon change-theme change-theme-button' id="theme-button"></i>
-
-    </nav>
-</header>
-
-<!--=============== MAIN ===============-->
-<main class="main">
-    <!--=============== HOME ===============-->
-    <section class="home section" id="home">
-        <div class="home__container container grid">
-            <div class="home__data">
-                <span class="home__greeting">Hello, I'm</span>
-                <h1 class="home__name">Hredoy Sen</h1>
-                <!-- Change the name And additional details -->
-                <!-- MAKE NEW CLASS  -->
-                <div class="newcontainer">
-                    <div class="static-text"><span>I AM </span></div>
-
-                    <div class="dynamic-text">
-                        <li><span> React Developer</span></li>
-                        <li><span> Front-End Developer</span></li>
-                        <li><span> Angular Expert</span></li>
-                        <li><span> UX Designer</span></li>
-
-                    </div>
-
-                </div>
-                <!-- NEW CODE HERE  -->
-
-                <h3 class="home__education">Software Engineer | Frontend Developer | Web & Mobile Enthusiast</h3>
-
-                <div class="home__button">
-                    <a download="" href="assets/pdf/hredoyFinalCv.pdf" target="_blank" class="button button--ghost">
-                        Download CV
-                    </a>
-
-                    <a href="#about" class="button">About</a>
-                </div>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">
+                            <i class='bx bx-home-alt nav__icon'></i>
+                            <span data-i18n="nav.home">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#projects" class="nav__link">
+                            <i class='bx bx-grid-alt nav__icon'></i>
+                            <span data-i18n="nav.projects">Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link">
+                            <i class='bx bx-laptop nav__icon'></i>
+                            <span data-i18n="nav.services">Services</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">
+                            <i class='bx bx-user nav__icon'></i>
+                            <span data-i18n="nav.about">About</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#testimonials" class="nav__link">
+                            <i class='bx bx-chat nav__icon'></i>
+                            <span data-i18n="nav.testimonials">Testimonials</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#faqs" class="nav__link">
+                            <i class='bx bx-help-circle nav__icon'></i>
+                            <span data-i18n="nav.faqs">FAQs</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">
+                            <i class='bx bx-envelope nav__icon'></i>
+                            <span data-i18n="nav.contact">Contact</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="home__handle">
-                <img src="assets/img/perfil.png" alt="" class="home__img">
-            </div>
-
-            <div class="home__social">
-                <a href="https://www.linkedin.com/in/hredoy-sen-2a0192212/" target="_blank" class="home__social-link">
-                    <i class='bx bxl-linkedin'></i>
-                </a>
-                <a href="https://github.com/hreduBro" target="_blank" class="home__social-link">
-                    <i class='bx bxl-github'></i>
-                </a>
-                <a href="https://www.fiverr.com/hredoysen/" target="_blank" class="home__social-link">
-                    <i class='bx bxl-sketch'></i>
-                </a>
-            </div>
-
-            <a href="#about" class="home__scroll">
-                <i class='bx bx-mouse home__scroll-icon'></i>
-                <span class="home__scroll-name">Scroll Down</span>
-            </a>
-        </div>
-
-    </section>
-
-    <!--=============== ABOUT ===============-->
-    <section class="about section" id="about">
-        <span class="section__subtitle">My Intro</span>
-        <h2 class="section__title">About Me</h2>
-
-        <div class="about__container container grid">
-            <img src="assets/img/about.jpg" alt="" class="about__img">
-
-            <div class="about__data">
-                <div class="about__info">
-                    <div class="about__box">
-                        <i class='bx bx-award about__icon'></i>
-                        <h3 class="about__title">Experience</h3>
-                        <span class="about__subtitle">5+ Years</span>
-                    </div>
-                    <div class="about__box">
-                        <i class='bx bx-briefcase-alt about__icon'></i>
-                        <h3 class="about__title">Completed</h3>
-                        <span class="about__subtitle">15+ Projects</span>
-                    </div>
-                    <div class="about__box">
-                        <i class='bx bx-support about__icon'></i>
-                        <h3 class="about__title">Support</h3>
-                        <span class="about__subtitle">Online 24/7</span>
+            <div class="nav__actions">
+                <!-- i18n Selector -->
+                <div class="nav__lang">
+                    <button class="nav__lang-btn" id="lang-btn">
+                        <i class='bx bx-globe'></i>
+                        <span id="active-lang-text">EN</span>
+                    </button>
+                    <div class="nav__lang-dropdown" id="lang-dropdown">
+                        <button class="lang-opt" data-lang="en">English (EN)</button>
+                        <button class="lang-opt" data-lang="bn">বাংলা (BN)</button>
                     </div>
                 </div>
 
-                <p class="about__description">
-                    I am a passionate Software Engineer with expertise in Angular, React Native, and Flutter, specializing in frontend development and cross-platform applications. With 5+ years of experience, I have built scalable, user-friendly web and mobile applications, focusing on seamless UX, performance, and maintainability.
+                <!-- Theme switch button -->
+                <button class="nav__theme-btn" id="theme-button" aria-label="Toggle Theme">
+                    <i class='bx bx-moon'></i>
+                </button>
 
-                    Currently, I am working at BRAC IT, where I develop enterprise-grade applications. I have also introduced frontend testing practices within my team, improving code quality and reliability.
-
-                    My goal is to build innovative, high-performance applications that make an impact. I am actively seeking opportunities in Malaysia, Canada, and beyond, eager to contribute my skills to dynamic teams.
-                </p>
-
-                <a href="#contact" class="button about__button-contact">Contact Me</a>
+                <!-- Book Call CTAs -->
+                <a href="#contact" class="button button--nav" data-i18n="nav.book_call">Book a call</a>
             </div>
-        </div>
-    </section>
+        </nav>
+    </header>
 
-    <!--=============== SKILLS ===============-->
-    <section class="skills section" id="skills">
-        <span class="section__subtitle">My Abilities</span>
-        <h2 class="section__title">My Skills</h2>
+    <!--=============== MAIN ===============-->
+    <main class="main">
+        
+        <!-- Background Glow Effects -->
+        <div class="bg-glow bg-glow--hero" aria-hidden="true"></div>
+        <div class="bg-glow bg-glow--middle" aria-hidden="true"></div>
+        <div class="bg-glow bg-glow--footer" aria-hidden="true"></div>
 
-        <div class="skills__container container grid">
-            <div class="skills__content">
-                <h3 class="skills__title">ANDROID DEVELOPMENT</h3>
-
-                <div class="skills__box">
-                    <div class="skills__group">
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">XML</h3>
-                                <span class="skills__level">Moderate</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">UI/UX</h3>
-                                <span class="skills__level">Moderate</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">React/Native</h3>
-                                <span class="skills__level">Advance</span>
-                            </div>
-                        </div>
-
+        <!--=============== HOME / HERO ===============-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                
+                <div class="home__data">
+                    <div class="home__heading-group">
+                        <span class="home__greeting" data-i18n="hero.greeting">Hi, I'm Hredoy Sen, building</span>
+                        <h1 class="home__title" data-i18n="hero.span_bold">Digital Experiences.</h1>
                     </div>
-                    <div class="skills__group">
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">Angular</h3>
-                                <span class="skills__level">Advance</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">Python</h3>
-                                <span class="skills__level">Moderate</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">Git</h3>
-                                <span class="skills__level">Mid-level</span>
-                            </div>
-                        </div>
-
+                    
+                    <!-- Dynamic Typist Text Container -->
+                    <div class="home__dynamic">
+                        <span class="static-text" id="home-static-text">I am a</span>
+                        <span class="dynamic-text" id="home-dynamic-text">React Developer</span>
                     </div>
+
+                    <p class="home__subtitle" data-i18n="hero.subtitle">From prototypes to production-ready systems, I turn ideas into scalable, user-focused products.</p>
+
+                    <div class="home__buttons">
+                        <a href="#contact" class="button" data-i18n="hero.connect_btn">Let's connect</a>
+                        <a href="#projects" class="button button--ghost" data-i18n="hero.work_btn">See my work</a>
+                    </div>
+                </div>
+
+                <!-- LCP optimized hero image card with dynamic stats -->
+                <div class="home__profile-wrapper">
+                    <div class="home__img-card">
+                        <img src="assets/img/perfil.png" 
+                             alt="Hredoy Sen" 
+                             class="home__img" 
+                             fetchpriority="high"
+                             decoding="async"
+                             width="320" 
+                             height="320">
+                    </div>
+                    
+                    <!-- Stats Badge Overlay -->
+                    <div class="stat-badge stat-badge--tr">
+                        <span class="stat-badge__val">1M+</span>
+                        <span class="stat-badge__label" data-i18n="stats.lines">Coding Hours</span>
+                    </div>
+                    <div class="stat-badge stat-badge--tl">
+                        <span class="stat-badge__val">500+</span>
+                        <span class="stat-badge__label" data-i18n="stats.support">Satisfied Clients</span>
+                    </div>
+                    <div class="stat-badge stat-badge--br">
+                        <span class="stat-badge__val">15+</span>
+                        <span class="stat-badge__label" data-i18n="stats.projects">Projects Completed</span>
+                    </div>
+                    <div class="stat-badge stat-badge--bl">
+                        <span class="stat-badge__val">5+</span>
+                        <span class="stat-badge__label" data-i18n="stats.experience">Years Experience</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trusted By Logos (Grayscale overlay inline SVGs) -->
+            <div class="trusted-by container">
+                <span class="trusted-by__title" data-i18n="hero.trusted_by">Trusted By:</span>
+                <div class="trusted-by__logos">
+                    <!-- Airbnb -->
+                    <div class="trusted-logo"><i class='bx bxl-airbnb'></i><span>airbnb</span></div>
+                    <!-- Google -->
+                    <div class="trusted-logo"><i class='bx bxl-google'></i><span>Google</span></div>
+                    <!-- Stripe -->
+                    <div class="trusted-logo"><i class='bx bxl-stripe'></i><span>stripe</span></div>
+                    <!-- Microsoft / Alternatives -->
+                    <div class="trusted-logo"><i class='bx bxl-meta'></i><span>Meta</span></div>
+                    <!-- Slack -->
+                    <div class="trusted-logo"><i class='bx bxl-slack'></i><span>Slack</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!--=============== PROJECTS ===============-->
+        <section class="projects section" id="projects">
+            <span class="section__subtitle" data-i18n="projects_section.title">Recent Projects</span>
+            <h2 class="section__title" data-i18n="projects_section.subtitle">A curated mix of projects - sensible, fast, and future-ready - blending design, code, and creativity.</h2>
+
+            <div class="projects__filters">
+                <button class="projects__filter-btn active-filter" data-filter="all" data-i18n="projects_section.filter_all">All</button>
+                <button class="projects__filter-btn" data-filter="app" data-i18n="projects_section.filter_app">App</button>
+                <button class="projects__filter-btn" data-filter="web" data-i18n="projects_section.filter_web">Web</button>
+                <button class="projects__filter-btn" data-filter="design" data-i18n="projects_section.filter_design">Design</button>
+            </div>
+
+            <!-- Project cards grid: elements will be injected dynamically -->
+            <div class="projects__grid container" id="projects-grid">
+                <!-- Dynamic Content Injected by JS -->
+            </div>
+        </section>
+
+        <!--=============== SERVICES ===============-->
+        <section class="services section" id="services">
+            <span class="section__subtitle" data-i18n="services_section.title">Services</span>
+            <h2 class="section__title" data-i18n="services_section.subtitle">From prototype to full-stack, I build modern products that are scalable and user-friendly.</h2>
+
+            <!-- Services Grid: injected dynamically -->
+            <div class="services__grid container" id="services-grid">
+                <!-- Dynamic Content Injected by JS -->
+            </div>
+        </section>
+
+        <!--=============== STATS COUNTER GRID ===============-->
+        <section class="stats section">
+            <div class="stats__grid container" id="stats-grid">
+                <!-- Injected dynamically -->
+            </div>
+        </section>
+
+        <!--=============== PROCESS ===============-->
+        <section class="process section">
+            <span class="section__subtitle" data-i18n="process_section.title">Process</span>
+            <h2 class="section__title" data-i18n="process_section.subtitle">A clear workflow drives each project - from strategy and design to development and post-launch support.</h2>
+
+            <div class="process__grid container">
+                <!-- Step 01 -->
+                <div class="process__card">
+                    <span class="process__number">01</span>
+                    <h3 class="process__card-title" data-i18n="process_section.step_1_title">Define & Architect</h3>
+                    <p class="process__card-desc" data-i18n="process_section.step_1_desc">Define goals, map workflows, and lay out clean layouts for scalable UI.</p>
+                </div>
+                <!-- Step 02 -->
+                <div class="process__card">
+                    <span class="process__number">02</span>
+                    <h3 class="process__card-title" data-i18n="process_section.step_2_title">Build & Develop</h3>
+                    <p class="process__card-desc" data-i18n="process_section.step_2_desc">Write clean, robust, and reusable code utilizing state-of-the-art technologies.</p>
+                </div>
+                <!-- Step 03 -->
+                <div class="process__card">
+                    <span class="process__number">03</span>
+                    <h3 class="process__card-title" data-i18n="process_section.step_3_title">Deploy & Support</h3>
+                    <p class="process__card-desc" data-i18n="process_section.step_3_desc">Deploy to production environments and offer active post-launch support.</p>
                 </div>
             </div>
 
-            <div class="skills__content">
-                <h3 class="skills__title">WEB Development</h3>
-
-                <div class="skills__box">
-                    <div class="skills__group">
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">HTML</h3>
-                                <span class="skills__level">Advance</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">CSS3/CSS5</h3>
-                                <span class="skills__level">Advance</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">PHP</h3>
-                                <span class="skills__level">Moderate</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="skills__group">
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">MySql</h3>
-                                <span class="skills__level">Mid Level</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">Firebase</h3>
-                                <span class="skills__level">Beginner</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <i class='bx bxs-badge-check'></i>
-
-                            <div>
-                                <h3 class="skills__name">TypeScript</h3>
-                                <span class="skills__level">Advance</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <!-- Process Banner -->
+            <div class="process__banner container">
+                <p class="process__banner-text" data-i18n="process_section.banner_text">Build reliable, user-focused products with expert code.</p>
+                <a href="#contact" class="button" data-i18n="nav.book_call">Book a call</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!--=============== SERVICES ===============-->
-    <section class="services section">
-        <span class="section__subtitle">My Services</span>
-        <h2 class="section__title">What I CAN</h2>
+        <!--=============== ABOUT ME ===============-->
+        <section class="about section" id="about">
+            <span class="section__subtitle" data-i18n="about_section.title">About Me</span>
+            <h2 class="section__title" data-i18n="about_section.subtitle">I build intuitive digital products - scalable, high-performing, and made through collaboration.</h2>
 
-        <div class="services__container container grid">
-            <div class="services__card">
-                <div class="serv">
-                    <h3 class="services__title">Product <br> Designing</h3>
-
-                    <span class="services__button">
-                            See More <i class='bx bx-right-arrow services__icon'></i>
-                        </span>
-                </div>
-
-
-                <div class="services__modal">
-                    <div class="services__modal-content">
-                        <i class='bx bx-x services__modal-close'></i>
-
-                        <h3 class="services__modal-title">Product Designing</h3>
-
-                        <p class="services__modal-description">
-                            I design and develop the consumer products with creative ability and
-                            hands-on approach which stisfies the 'customers' needs and trends.
-                        </p>
-
-                        <ul class="services__modal-list">
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I develop the - TRENDING UI/UX - Having the Eye-Catchy Theme.
-
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    Web Page design Front-end & Back-end
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    MS OFFICE CERTIFIDE COMPLETION
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I create the VECTOR based GRAPHIC DESIGNING.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    Create Modern - Trendy Illustrations.
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="services__card">
-                <h3 class="services__title">UI/UX <br> Designing</h3>
-
-                <span class="services__button">
-                        See More <i class='bx bx-right-arrow services__icon'></i>
+            <div class="about__container container grid">
+                <!-- Left: Profile Widget Card -->
+                <div class="about__profile-card">
+                    <span class="about__status-tag">
+                        <span class="pulse-dot"></span>
+                        <span data-i18n="about_section.status_tag">Available for work</span>
                     </span>
+                    
+                    <div class="about__avatar-container">
+                        <!-- We reuse perfil.png or about.jpg. Using about.jpg since it is about section -->
+                        <img src="assets/img/about.jpg" 
+                             alt="Hredoy Sen Profile" 
+                             class="about__avatar" 
+                             loading="lazy" 
+                             width="220" 
+                             height="220">
+                    </div>
 
-                <div class="services__modal">
-                    <div class="services__modal-content">
-                        <i class='bx bx-x services__modal-close'></i>
+                    <h3 class="about__name" id="about-name">Hredoy Sen</h3>
+                    <p class="about__brief" data-i18n="about_section.brief_bio">Create seamless performance interfaces, mobile and develop with the best tech</p>
+                    
+                    <!-- Social list -->
+                    <div class="about__socials" id="about-socials">
+                        <!-- Injected dynamically -->
+                    </div>
 
-                        <h3 class="services__modal-title">UI/UX Designing</h3>
+                    <a href="#contact" class="button" data-i18n="nav.connect">Let's Connect</a>
+                </div>
 
-                        <p class="services__modal-description">
-                            I can design Some really Interactive UI designs . With eye catchy Illustrations and SVGs.
-                            I have the creative ability and
-                            hands-on approach which stisfies the 'customers' and Market needs.
+                <!-- Right: Detailed Bio, Tech Stack & Experience -->
+                <div class="about__content">
+                    <!-- Bio Card -->
+                    <div class="about__card about__bio-card">
+                        <h3 class="about__bio-title" data-i18n="about_section.bio_greeting">Hi! I'm Hredoy Sen,</h3>
+                        <p class="about__description" data-i18n="about_section.long_bio">
+                            I am a passionate Senior Software Engineer with expertise in Angular, React, React Native, and Flutter, specializing in frontend development and cross-platform applications.
                         </p>
-
-                        <ul class="services__modal-list">
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I develop the user interfaces {XML | JAVA }.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    Web Page design and development. {HTML:5 | CSS:3 }
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I create the UX element interactions.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I create VECTOR BASED LOGO.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    Create modern 3-D Illustrations.
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="services__card">
-                <h3 class="services__title">Visual <br> Designing</h3>
-
-                <span class="services__button">
-                        See More <i class='bx bx-right-arrow services__icon'></i>
-                    </span>
-
-                <div class="services__modal">
-                    <div class="services__modal-content">
-                        <i class='bx bx-x services__modal-close'></i>
-
-                        <h3 class="services__modal-title">Visual Designing</h3>
-
-                        <p class="services__modal-description">
-                            I design and develop the consumer products with creative ability and
-                            hands-on approach which stisfies the customers' and markets' needs and trends.
-                        </p>
-
-                        <ul class="services__modal-list">
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    UI / UX
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    Interactive Element Designs.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    New Trendy Design Recommendations.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    I develop Responsive Layouts.
-                                </p>
-                            </li>
-
-                            <li class="services__modal-item">
-                                <i class='bx bx-check-circle'></i>
-                                <p class="services__modal-info">
-                                    CAN DESIGN Layouts Via HARD-CODE
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--=============== WORK ===============-->
-    <section class="work section" id="work">
-        <span class="section__subtitle">My Portfolio</span>
-        <h2 class="section__title">Recent Works</h2>
-
-        <div class="work__filters">
-            <span class="work__item active-work" data-filter='all'>All</span>
-            <span class=" work__item" data-filter='.web'>App</span>
-            <span class=" work__item" data-filter='.movil'>Web</span>
-            <span class=" work__item" data-filter='.design'>Design</span>
-        </div>
-
-        <div class="work__container container grid">
-            <div class="work__card mix web">
-                <img src="assets/img/work1.png" alt="" class="work__img">
-
-                <h3 class="work__title">Graphic Design</h3>
-
-                <a href="assets/css/work1demo/HAnd on I.png" class="work__button">
-                    Demo <i class='bx bx-right-arrow work__icon'></i>
-                </a>
-            </div>
-
-            <div class="work__card mix movil">
-                <img src="assets/img/work2.png" alt="" class="work__img">
-
-                <h3 class="work__title">Presentation Design</h3>
-
-                <a href="#" class="work__button">
-                    Demo <i class='bx bx-right-arrow work__icon'></i>
-                </a>
-            </div>
-
-            <div class="work__card mix design">
-                <img src="assets/img/work3.png" alt="" class="work__img">
-
-                <h3 class="work__title">UI Design</h3>
-
-                <a href="#" class="work__button">
-                    Demo <i class='bx bx-right-arrow work__icon'></i>
-                </a>
-            </div>
-
-            <div class="work__card mix web">
-                <img src="assets/img/work4.png" alt="" class="work__img">
-
-                <h3 class="work__title">Material Design</h3>
-
-                <a href="#" class="work__button">
-                    Demo <i class='bx bx-right-arrow work__icon'></i>
-                </a>
-            </div>
-
-            <div class="work__card mix movil">
-                <img src="assets/img/work5.png" alt="" class="work__img">
-
-                <h3 class="work__title">Post Design</h3>
-
-                <a href="#" class="work__button">
-                    Demo <i class='bx bx-right-arrow work__icon'></i>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!--=============== TESTIMONIALS ===============-->
-    <section class="testimonial section">
-        <span class="section__subtitle">My clients say</span>
-        <h2 class="section__title">Testimonials</h2>
-
-        <div class="testimonial__container container swiper">
-            <div class="swiper-wrapper">
-                <div class="testimonial__card swiper-slide">
-                    <img src="assets/img/Jabali-LogoNoWords-200x205.png" alt="" class="testimonial__img">
-
-                    <h3 class="testimonial__name">Jabali Int.</h3>
-                    <p class="testimonial__description">
-                        A really good job, all aspects of the project were done well.
-                        Very creative and thoughtful. I was very impressed and would recommend this to anyone.
-                    </p>
-                </div>
-
-                <div class="testimonial__card swiper-slide">
-                    <img src="assets/img/BRAC-Mark-Icon-BRAC-UPGI.png" alt="" class="testimonial__img brac">
-
-                    <h3 class="testimonial__name">Brac HRMS HEAD</h3>
-                    <p class="testimonial__description">
-                        My work has finished in time . I got the delievery of my product before the due date.I am so
-                        happy with the work, I can suggest him to you all.
-                    </p>
-                </div>
-
-                <div class="testimonial__card swiper-slide">
-                    <img src="assets/img/unnamed.png" alt="" class="testimonial__img">
-
-                    <h3 class="testimonial__name">Talikhata CTO</h3>
-                    <p class="testimonial__description">
-                        A very humble and Supportive nature , very punctual to his work I got my product delievery at
-                        the time . I am very impressed and would recommend this to anyone.
-                    </p>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-
-    </section>
-
-    <!--=============== CONTACT ===============-->
-    <section class="contact section" id="contact">
-        <sapn class="section__subtitle">Get in touch</sapn>
-        <h3 class="section__title">Contact Me</h3>
-
-        <div class="contact__container container grid">
-            <div class="contact__content">
-                <h3 class="contact__title contact__title-info">Talk to me</h3>
-
-                <div class="contact__info">
-                    <div class="contact__card">
-                        <i class='bx bx-mail-send contact__card-icon'></i>
-                        <h3 class="contact__card-title">Email</h3>
-                        <span class="contact__card-data">hredoy.sen449@gmail.com</span>
-
-                        <a href="mailto:hredoy.sen449@gmail.com" target="_blank" class="contact__button">
-                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                        </a>
                     </div>
 
-                    <div class="contact__card">
-                        <i class='bx bxl-whatsapp contact__card-icon'></i>
-                        <h3 class="contact__card-title">Whatsapp</h3>
-                        <span class="contact__card-data">+880-1319-839-449</span>
-
-                        <a href="https://api.whatsapp.com/send?phone=+8801319839449&text=Hey there! Mr.Hredoy Sen  "
-                           target="_blank"
-                           class="contact__button">
-                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                        </a>
+                    <!-- Tech stack carousel card -->
+                    <div class="about__card about__tech-card">
+                        <h4 class="about__tech-title" data-i18n="about_section.tech_stack_title">My Tech Stack:</h4>
+                        <div class="about__tech-slider">
+                            <div class="about__tech-track" id="tech-stack-grid">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="contact__card">
-                        <i class='bx bxl-linkedin contact__card-icon'></i>
-                        <h3 class="contact__card-title">LinkedIn</h3>
-                        <span class="contact__card-data">@hredoy-sen</span>
-
-                        <a href="https://www.linkedin.com/in/hredoy-sen-2a0192212" target="_blank" class="contact__button">
-                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                        </a>
+                    <!-- Experience timeline card -->
+                    <div class="about__card about__exp-card">
+                        <h4 class="about__exp-title" data-i18n="about_section.experience_title">Experience</h4>
+                        <div class="about__exp-list" id="experience-list">
+                            <!-- Injected dynamically -->
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="contact__content">
-                <h3 class="contact__title contact__title-form">Write Me your Message</h3>
-                <!--=============== FORM START ===============-->
-                <form name="messend" netlify>
-                    <form action="" class="contact__form">
+            </div>
+        </section>
+
+        <!--=============== TESTIMONIALS ===============-->
+        <section class="testimonials section" id="testimonials">
+            <span class="section__subtitle" data-i18n="testimonials_section.title">Testimonials</span>
+            <h2 class="section__title" data-i18n="testimonials_section.subtitle">Feedback from clients and collaborators, reflecting my commitment to quality and reliability.</h2>
+
+            <!-- Testimonials Grid -->
+            <div class="testimonials__grid container" id="testimonials-grid">
+                <!-- Injected dynamically -->
+            </div>
+        </section>
+
+        <!--=============== FAQS ===============-->
+        <section class="faqs section" id="faqs">
+            <span class="section__subtitle" data-i18n="faq_section.title">Frequently Asked Questions</span>
+            <h2 class="section__title" data-i18n="faq_section.subtitle">Answers to common questions about my work and process.</h2>
+
+            <!-- FAQ Accordions using native <details> with mutual exclusion (name attribute) -->
+            <div class="faqs__container container" id="faqs-accordion">
+                <!-- Injected dynamically -->
+            </div>
+        </section>
+
+        <!--=============== CTA BANNER ===============-->
+        <section class="cta section">
+            <div class="cta__container container">
+                <h2 class="cta__title" data-i18n="cta_section.title">Your vision, my expertise. Let's create something exceptional.</h2>
+                <p class="cta__desc" data-i18n="cta_section.subtitle">Ready to start? Schedule a consultation and let's shape your next project.</p>
+                <a href="#contact" class="button" data-i18n="cta_section.button">Book a call</a>
+            </div>
+        </section>
+
+        <!--=============== CONTACT ===============-->
+        <section class="contact section" id="contact">
+            <span class="section__subtitle" data-i18n="contact_section.subtitle">Get in touch</span>
+            <h2 class="section__title" data-i18n="contact_section.title">Contact Me</h2>
+
+            <div class="contact__container container grid">
+                <!-- Talk to me Cards -->
+                <div class="contact__content">
+                    <h3 class="contact__title" data-i18n="contact_section.subtitle">Talk to me</h3>
+                    
+                    <div class="contact__info" id="contact-cards">
+                        <!-- Injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="contact__content">
+                    <h3 class="contact__title" data-i18n="contact_section.form_title">Write Me your Message</h3>
+                    
+                    <!-- Netlify enabled form for serverless deployment -->
+                    <form name="portfolio-contact" method="POST" data-netlify="true" class="contact__form">
+                        <input type="hidden" name="form-name" value="portfolio-contact">
+                        
                         <div class="contact__form-div">
-                            <label for="" class="contact__form-tag">Name</label>
-                            <input type="text" placeholder="Enter name" class="contact__form-input">
+                            <label class="contact__form-tag" data-i18n="contact_section.form_name">Name</label>
+                            <input type="text" name="name" required placeholder="Enter name" class="contact__form-input" data-i18n-placeholder="contact_section.form_name_placeholder">
                         </div>
 
                         <div class="contact__form-div">
-                            <label for="" class="contact__form-tag">Mail</label>
-                            <input type="text" placeholder="Enter email" class="contact__form-input">
+                            <label class="contact__form-tag" data-i18n="contact_section.form_email">Mail</label>
+                            <input type="email" name="email" required placeholder="Enter email" class="contact__form-input" data-i18n-placeholder="contact_section.form_email_placeholder">
                         </div>
 
                         <div class="contact__form-div contact__form-area">
-                            <label for="" class="contact__form-tag">Message</label>
-                            <textarea name="" id="" cols="30" rows="10" placeholder="Write your Message"
-                                      class="contact__form-input "></textarea>
+                            <label class="contact__form-tag" data-i18n="contact_section.form_message">Message</label>
+                            <textarea name="message" required cols="30" rows="10" placeholder="Write your Message" class="contact__form-input" data-i18n-placeholder="contact_section.form_message_placeholder"></textarea>
                         </div>
-                        <button class="button">
-                            Send Message
-                        </button>
+
+                        <button type="submit" class="button" data-i18n="contact_section.form_submit">Send Message</button>
                     </form>
-                    <!--=============== FORM END ===============-->
-                </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!--=============== FOOTER ===============-->
+    <footer class="footer">
+        <div class="footer__container container">
+            <!-- Giant Header Title -->
+            <h2 class="footer__title">Hredoy Sen</h2>
+            
+            <!-- Navigation Links Centered -->
+            <ul class="footer__links">
+                <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">Work</a></li>
+                <li><a href="#faqs" data-i18n="nav.faqs">FAQs</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+
+            <!-- Social media footer list centered -->
+            <div class="footer__socials" id="footer-socials">
+                <!-- Injected dynamically -->
+            </div>
+            
+            <hr class="footer__divider">
+
+            <div class="footer__bottom">
+                <span class="footer__copy">
+                    &#169; 2026 Hredoy Sen. All Rights Reserved
+                </span>
+                
+                <div class="footer__policies">
+                    <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" data-i18n="footer.cookies">Cookies</a>
+                    <a href="#" data-i18n="footer.license">License</a>
+                </div>
             </div>
         </div>
-    </section>
-</main>
+    </footer>
 
-<!--=============== FOOTER ===============-->
-<footer class="footer">
-    <div class="footer__container container">
-        <h1 class="footer__title">Hredoy Sen</h1>
-
-        <ul class="footer__list">
-
-            <li class="footer__item">
-                <a href="#" class="footer__link">Home</a>
-            </li>
-            <li class="footer__item">
-                <a href="#about" class="footer__link">About</a>
-            </li>
-            <li class="footer__item">
-                <a href="#skills" class="footer__link">Skills</a>
-            </li>
-            <li class="footer__item">
-                <a href="#work" class="footer__link">Work</a>
-            </li>
-            <li class="footer__item">
-                <a href="#contact" class="footer__link">Contact</a>
-            </li>
-        </ul>
-
-        <ul class="footer__social">
-            <li class="footer__social-item">
-                <a href="https://www.facebook.com/hreduBro" target="_blank" class="footer__social-link">
-                    <i class='bx bxl-facebook footer__social-icon'></i>
-                </a>
-            </li>
-            <li class="footer__social-item">
-                <a href="mailto:hredoy.sen449@gmail.com" target="_blank" class="footer__social-link">
-                    <i class='bx bxl-gmail footer__social-icon'></i>
-                </a>
-            </li>
-            <li class="footer__social-item">
-                <a href="https://www.linkedin.com/in/hredoy-sen-2a0192212/" target="_blank" class="footer__social-link">
-                    <i class='bx bxl-linkedin footer__social-icon'></i>
-                </a>
-            </li>
-            <li class="footer__social-item">
-                <a href="https://www.instagram.com/hredoybru/" target="_blank" class="footer__social-link">
-                    <i class='bx bxl-instagram footer__social-icon'></i>
-                </a>
-            </li>
-        </ul>
-
-        <span class="footer__copy">
-                &#169; 2025 Hredoy Sen. All rights reserved.
-            </span>
-    </div>
-</footer>
-
-<!--=============== SCROLLREVEAL ===============-->
-
-<!-- <script src="assets/js/scrollreveal.min.js"></script> -->
-<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-
-<!--=============== SWIPER JS ===============-->
-<script src="assets/js/swiper-bundle.min.js"></script>
-
-<!--=============== MIXITUP FILTER ===============-->
-<script src="assets/js/mixitup.min.js"></script>
-
-<!--=============== MAIN JS ===============-->
-<script src="assets/js/main.js"></script>
+    <!--=============== LOGIC JS ===============-->
+    <script src="assets/data/portfolio-data.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
