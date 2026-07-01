@@ -689,8 +689,8 @@ img {
   align-items: center;
   column-gap: 0.5rem;
   font-size: 1.75rem;
-  color: var(--text-color-light);
-  opacity: 0.5;
+  color: var(--text-color);
+  opacity: 0.85;
   transition: all 0.3s;
 }
 
@@ -1034,7 +1034,8 @@ img {
   display: block;
   font-size: 3.25rem;
   font-weight: var(--font-bold);
-  color: rgba(var(--first-color-rgb), 0.35);
+  color: var(--first-color);
+  opacity: 0.85;
   margin-bottom: 0.75rem;
   line-height: 1;
 }
