@@ -2222,3 +2222,26 @@ body.loading {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 35px rgba(59, 130, 246, 0.75); }
 }
+
+/* RTL Support for Arabic Layouts */
+html[dir="rtl"] .nav__lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] .lang-opt {
+  text-align: right;
+}
+
+html[dir="rtl"] .faq__toggle-icon {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .contact__button i {
+  transform: rotate(180deg);
+}
+
+html[dir="rtl"] .contact__button:hover i {
+  transform: translate3d(-0.25rem, 0, 0) rotate(180deg);
+}

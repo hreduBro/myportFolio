@@ -14,6 +14,15 @@ function renderContent() {
 
   const langData = portfolioData.i18n[activeLang];
 
+  // Set RTL direction for Arabic support
+  if (activeLang === "ar") {
+    document.documentElement.dir = "rtl";
+    document.documentElement.lang = "ar";
+  } else {
+    document.documentElement.dir = "ltr";
+    document.documentElement.lang = activeLang;
+  }
+
   // 1. Update static labels (text & placeholders)
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -265,11 +274,24 @@ function initTypewriter() {
   
   if (!staticTextEl || !dynamicTextEl || !portfolioData) return;
 
-  const roles = activeLang === "en" 
-    ? ["React Developer", "Frontend Engineer", "Angular Expert", "UX Designer"] 
-    : ["রিয়েক্ট ডেভেলপার", "ফ্রন্টএন্ড ইঞ্জিনিয়ার", "অ্যাঙ্গুলার এক্সপার্ট", "ইউআই/ইউএক্স ডিজাইনার"];
+  let roles = ["React Developer", "Frontend Engineer", "Angular Expert", "UX Designer"];
+  if (activeLang === "bn") {
+    roles = ["রিয়েক্ট ডেভেলপার", "ফ্রন্টএন্ড ইঞ্জিনিয়ার", "অ্যাঙ্গুলার এক্সপার্ট", "ইউআই/ইউএক্স ডিজাইনার"];
+  } else if (activeLang === "zh") {
+    roles = ["React 开发者", "前端工程师", "Angular 专家", "UX 设计师"];
+  } else if (activeLang === "ar") {
+    roles = ["مطور ريآكت", "مهندس واجهات", "خبير أنجولار", "مصمم واجهات"];
+  }
     
-  staticTextEl.textContent = activeLang === "en" ? "I am a" : "আমি একজন";
+  if (activeLang === "en") {
+    staticTextEl.textContent = "I am a";
+  } else if (activeLang === "bn") {
+    staticTextEl.textContent = "আমি একজন";
+  } else if (activeLang === "zh") {
+    staticTextEl.textContent = "我是一名";
+  } else if (activeLang === "ar") {
+    staticTextEl.textContent = "أنا";
+  }
 
   let roleIndex = 0;
   let charIndex = 0;
