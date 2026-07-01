@@ -95,7 +95,18 @@
     </script>
 </head>
 
-<body>
+<body class="loading">
+    <!--=============== PRELOADER ===============-->
+    <div id="preloader" class="preloader">
+      <div class="preloader__content">
+        <div class="preloader__logo">H.</div>
+        <div class="preloader__status" id="preloader-status">Initializing System...</div>
+        <div class="preloader__progress-bar">
+          <div class="preloader__progress-fill" id="preloader-fill"></div>
+        </div>
+        <div class="preloader__percentage" id="preloader-perc">0%</div>
+      </div>
+    </div>
     <!--=============== HEADER ===============-->
     <header class="header" id="header">
         <nav class="nav container">

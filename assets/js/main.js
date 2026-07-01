@@ -494,6 +494,7 @@ async function initPortfolio() {
 
 // Kick off initialization and PWA service worker registration
 document.addEventListener("DOMContentLoaded", () => {
+  runPreloader();
   initPortfolio();
   
   if ('serviceWorker' in navigator) {
@@ -504,6 +505,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/*=============== FUTURISTIC PRELOADER LOGIC ===============*/
+function runPreloader() {
+  const fill = document.getElementById("preloader-fill");
+  const perc = document.getElementById("preloader-perc");
+  const status = document.getElementById("preloader-status");
+  const preloader = document.getElementById("preloader");
+
+  if (!fill || !perc || !status || !preloader) return;
+
+  const logs = [
+    "Initializing Core...",
+    "Loading Brand Assets...",
+    "Parsing Tech Stack...",
+    "Compiling Experience...",
+    "Starting System..."
+  ];
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 12) + 3;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+
+      fill.style.width = "100%";
+      perc.textContent = "100%";
+      status.textContent = "System ready.";
+
+      setTimeout(() => {
+        preloader.classList.add("preloader--hidden");
+        document.body.classList.remove("loading");
+      }, 400);
+    } else {
+      fill.style.width = `${progress}%`;
+      perc.textContent = `${progress}%`;
+
+      const logIndex = Math.min(Math.floor(progress / 20), logs.length - 1);
+      status.textContent = logs[logIndex];
+    }
+  }, 45);
+}
 
 /*=============== FUTURISTIC INTERACTIVE ANIMATIONS ===============*/
 function initFuturisticAnimations() {
