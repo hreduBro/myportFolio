@@ -190,7 +190,7 @@ function renderContent() {
         <div class="testimonial__author-info">
           <img src="${test.avatar_url}" alt="${testLang.name}" class="testimonial__img" width="48" height="48" loading="lazy">
           <div>
-            <h4 class="testimonial__name">${testLang.name}</h4>
+            <h3 class="testimonial__name">${testLang.name}</h3>
             <span class="testimonial__role">${testLang.role}</span>
           </div>
         </div>
