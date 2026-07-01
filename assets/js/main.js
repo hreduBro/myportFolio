@@ -60,7 +60,7 @@ function renderContent() {
         <span class="project__tag">${project.category}</span>
         <h3 class="project__title">${projLang.title}</h3>
         <p class="project__desc">${projLang.description}</p>
-        <a href="${project.demo_url}" class="project__link">
+        <a href="${project.demo_url}" target="_blank" class="project__link" aria-label="${langData.projects_section.demo} - ${projLang.title}">
           ${langData.projects_section.demo} <i class='bx bx-right-arrow-alt'></i>
         </a>
       </div>
@@ -128,17 +128,19 @@ function renderContent() {
 
   socialIcons.forEach(soc => {
     if (socials[soc.key]) {
+      const label = soc.key.charAt(0).toUpperCase() + soc.key.slice(1);
+      
       const aAbout = document.createElement("a");
       aAbout.href = socials[soc.key];
       aAbout.target = "_blank";
-      aAbout.ariaLabel = soc.key;
+      aAbout.setAttribute("aria-label", `${label} profile`);
       aAbout.innerHTML = `<i class='${soc.icon}'></i>`;
       aboutSocials.appendChild(aAbout);
 
       const aFooter = document.createElement("a");
       aFooter.href = socials[soc.key];
       aFooter.target = "_blank";
-      aFooter.ariaLabel = soc.key;
+      aFooter.setAttribute("aria-label", `${label} profile`);
       aFooter.innerHTML = `<i class='${soc.icon}'></i>`;
       footerSocials.appendChild(aFooter);
     }
@@ -487,5 +489,15 @@ async function initPortfolio() {
   }
 }
 
-// Kick off initialization
-document.addEventListener("DOMContentLoaded", initPortfolio);
+// Kick off initialization and PWA service worker registration
+document.addEventListener("DOMContentLoaded", () => {
+  initPortfolio();
+  
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('ServiceWorker registered:', reg.scope))
+        .catch(err => console.log('ServiceWorker registration failed:', err));
+    });
+  }
+});

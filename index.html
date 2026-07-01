@@ -29,19 +29,29 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/H.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/H.png">
     <link rel="shortcut icon" href="assets/favicons/H.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
+    <meta name="theme-color" content="#030712">
     
-    <!-- Icon Font (Boxicons) -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <!-- Devicon for Rich Tech Stack Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <!-- Google Fonts -->
+    <!-- Preconnect for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Icon Font (Boxicons) loaded asynchronously -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Devicon for Rich Tech Stack Icons loaded asynchronously -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Preloads for Performance / LCP optimization -->
     <link rel="preload" href="assets/img/perfil.png" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Deferred logic JS -->
+    <script src="assets/data/portfolio-data.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 
     <!-- Theme Initialization to prevent Flash of Unstyled Content (FOUC) -->
     <meta name="color-scheme" content="light dark">
@@ -353,7 +363,7 @@
 
                     <!-- Tech stack carousel card -->
                     <div class="about__card about__tech-card">
-                        <h4 class="about__tech-title" data-i18n="about_section.tech_stack_title">My Tech Stack:</h4>
+                        <h3 class="about__tech-title" data-i18n="about_section.tech_stack_title">My Tech Stack:</h3>
                         <div class="about__tech-slider">
                             <div class="about__tech-track" id="tech-stack-grid">
                                 <!-- Injected dynamically -->
@@ -363,7 +373,7 @@
 
                     <!-- Experience timeline card -->
                     <div class="about__card about__exp-card">
-                        <h4 class="about__exp-title" data-i18n="about_section.experience_title">Experience</h4>
+                        <h3 class="about__exp-title" data-i18n="about_section.experience_title">Experience</h3>
                         <div class="about__exp-list" id="experience-list">
                             <!-- Injected dynamically -->
                         </div>
@@ -473,7 +483,7 @@
             <hr class="footer__divider">
 
             <div class="footer__bottom">
-                <span class="footer__copy">
+                <span class="footer__copy" id="footer-copy">
                     &#169; 2026 Hredoy Sen. All Rights Reserved
                 </span>
                 
@@ -487,9 +497,6 @@
         </div>
     </footer>
 
-    <!--=============== LOGIC JS ===============-->
-    <script src="assets/data/portfolio-data.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
