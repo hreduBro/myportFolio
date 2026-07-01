@@ -3,10 +3,27 @@ const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/assets/css/styles.css',
+  '/assets/css/boxicons.min.css',
+  '/assets/css/devicon.min.css',
   '/assets/js/main.js',
   '/assets/data/portfolio-data.js',
   '/assets/favicons/H.png',
-  '/assets/favicons/site.webmanifest'
+  '/assets/favicons/site.webmanifest',
+  '/assets/fonts/boxicons.woff2',
+  '/assets/fonts/boxicons.woff',
+  '/assets/fonts/boxicons.ttf',
+  '/assets/css/fonts/devicon.ttf',
+  '/assets/css/fonts/devicon.woff',
+  '/assets/img/perfil.webp',
+  '/assets/img/about.webp',
+  '/assets/img/BRAC-Mark-Icon-BRAC-UPGI.webp',
+  '/assets/img/Jabali-LogoNoWords-200x205.webp',
+  '/assets/img/unnamed.webp',
+  '/assets/img/work1.webp',
+  '/assets/img/work2.webp',
+  '/assets/img/work3.webp',
+  '/assets/img/work4.webp',
+  '/assets/img/work5.webp'
 ];
 
 self.addEventListener('install', event => {
