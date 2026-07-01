@@ -188,13 +188,13 @@ function renderContent() {
       <p class="testimonial__text">"${testLang.text}"</p>
       <div class="testimonial__author">
         <div class="testimonial__author-info">
-          <img src="${test.avatar_url}" alt="${testLang.name}" class="testimonial__img">
+          <img src="${test.avatar_url}" alt="${testLang.name}" class="testimonial__img" width="48" height="48" loading="lazy">
           <div>
             <h4 class="testimonial__name">${testLang.name}</h4>
             <span class="testimonial__role">${testLang.role}</span>
           </div>
         </div>
-        <img src="${test.logo_url}" alt="${testLang.name} Company Logo" class="testimonial__company-logo">
+        <img src="${test.logo_url}" alt="${testLang.name} Company Logo" class="testimonial__company-logo" width="40" height="40" loading="lazy">
       </div>
     `;
     testimonialsGrid.appendChild(card);

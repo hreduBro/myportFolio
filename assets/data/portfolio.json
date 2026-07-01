@@ -35,7 +35,7 @@
   "projects": [
     {
       "id": "project-1",
-      "image": "assets/img/work1.png",
+      "image": "assets/img/work1.webp",
       "category": "design",
       "demo_url": "#",
       "en": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "project-2",
-      "image": "assets/img/work2.png",
+      "image": "assets/img/work2.webp",
       "category": "web",
       "demo_url": "#",
       "en": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "project-3",
-      "image": "assets/img/work3.png",
+      "image": "assets/img/work3.webp",
       "category": "design",
       "demo_url": "#",
       "en": {
@@ -83,7 +83,7 @@
     },
     {
       "id": "project-4",
-      "image": "assets/img/work4.png",
+      "image": "assets/img/work4.webp",
       "category": "app",
       "demo_url": "#",
       "en": {
@@ -99,7 +99,7 @@
     },
     {
       "id": "project-5",
-      "image": "assets/img/work5.png",
+      "image": "assets/img/work5.webp",
       "category": "web",
       "demo_url": "#",
       "en": {
@@ -260,7 +260,7 @@
     {
       "logo_class": "jabali",
       "avatar_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80",
-      "logo_url": "assets/img/Jabali-LogoNoWords-200x205.png",
+      "logo_url": "assets/img/Jabali-LogoNoWords-200x205.webp",
       "en": {
         "name": "Jabali Int.",
         "role": "Client Representative",
@@ -275,7 +275,7 @@
     {
       "logo_class": "brac",
       "avatar_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80",
-      "logo_url": "assets/img/BRAC-Mark-Icon-BRAC-UPGI.png",
+      "logo_url": "assets/img/BRAC-Mark-Icon-BRAC-UPGI.webp",
       "en": {
         "name": "Brac HRMS HEAD",
         "role": "Enterprise Client",
@@ -290,7 +290,7 @@
     {
       "logo_class": "talikhata",
       "avatar_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80",
-      "logo_url": "assets/img/unnamed.png",
+      "logo_url": "assets/img/unnamed.webp",
       "en": {
         "name": "Talikhata CTO",
         "role": "Tech Partner",
