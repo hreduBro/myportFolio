@@ -1938,6 +1938,18 @@ img {
     z-index: var(--z-fixed);
   }
 
+  .nav__lang-dropdown {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
+    right: 0;
+    left: auto;
+  }
+
+  html[dir="rtl"] .nav__lang-dropdown {
+    right: auto;
+    left: 0;
+  }
+
   .nav__menu {
     position: fixed;
     bottom: 1.5rem;
@@ -1952,6 +1964,11 @@ img {
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+  }
+
+  [data-theme="light"] .nav__menu {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
 
   .nav__list {

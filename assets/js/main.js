@@ -530,69 +530,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/*=============== DYNAMIC STYLE DEFERRING ===============*/
+function loadDeferredStyles() {
+  const styles = [
+    'assets/css/boxicons.min.css',
+    'assets/css/devicon.min.css'
+  ];
+  styles.forEach(src => {
+    if (!document.querySelector(`link[href="${src}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = src;
+      document.head.appendChild(link);
+    }
+  });
+}
+
 /*=============== FUTURISTIC PRELOADER LOGIC ===============*/
 function runPreloader() {
-  const fill = document.getElementById("preloader-fill");
-  const perc = document.getElementById("preloader-perc");
-  const status = document.getElementById("preloader-status");
   const preloader = document.getElementById("preloader");
+  const status = document.getElementById("preloader-status");
 
-  if (!fill || !perc || !status || !preloader) return;
+  if (!preloader) return;
 
-  // Dynamically load heavy icon stylesheets asynchronously to exclude them from critical render path
-  const loadDeferredStyles = () => {
-    const styles = [
-      'assets/css/boxicons.min.css',
-      'assets/css/devicon.min.css'
-    ];
-    styles.forEach(src => {
-      if (!document.querySelector(`link[href="${src}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = src;
-        document.head.appendChild(link);
-      }
-    });
-  };
-
-  // Start style load immediately in background
-  loadDeferredStyles();
-
-  const logs = [
-    "Initializing Core...",
-    "Loading Brand Assets...",
-    "Parsing Tech Stack...",
-    "Compiling Experience...",
-    "Starting System..."
-  ];
-
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.floor(Math.random() * 12) + 3;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-
-      fill.style.transform = "scaleX(1)";
-      perc.textContent = "100%";
+  // Monitor complete resource onload event to ensure main thread is idle
+  window.addEventListener("load", () => {
+    if (status) {
       status.textContent = "System ready.";
-
-      setTimeout(() => {
-        preloader.classList.add("preloader--hidden");
-        document.body.classList.remove("loading");
-        
-        // Defer CPU-heavy observers and interactive animations initialization by 250ms
-        setTimeout(initFuturisticAnimations, 250);
-      }, 400);
-    } else {
-      // GPU compositor accelerated scaling (no reflows/repaints)
-      fill.style.transform = `scaleX(${progress / 100})`;
-      perc.textContent = `${progress}%`;
-
-      const logIndex = Math.min(Math.floor(progress / 20), logs.length - 1);
-      status.textContent = logs[logIndex];
     }
-  }, 45);
+
+    setTimeout(() => {
+      preloader.classList.add("preloader--hidden");
+      document.body.classList.remove("loading");
+      
+      // Load deferred heavy icon styles completely after critical paint
+      loadDeferredStyles();
+
+      // Defer CPU-heavy interactive animations setup
+      setTimeout(initFuturisticAnimations, 250);
+    }, 1000); // Match CSS cubic-bezier animation duration
+  });
 }
 
 /*=============== FUTURISTIC INTERACTIVE ANIMATIONS ===============*/
