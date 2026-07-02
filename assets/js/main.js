@@ -541,22 +541,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/*=============== DYNAMIC STYLE DEFERRING ===============*/
-function loadDeferredStyles() {
-  const styles = [
-    'assets/css/boxicons.min.css',
-    'assets/css/devicon.min.css'
-  ];
-  styles.forEach(src => {
-    if (!document.querySelector(`link[href="${src}"]`)) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = src;
-      document.head.appendChild(link);
-    }
-  });
-}
-
 /*=============== FUTURISTIC PRELOADER LOGIC ===============*/
 function runPreloader() {
   const preloader = document.getElementById("preloader");
@@ -573,9 +557,6 @@ function runPreloader() {
     setTimeout(() => {
       preloader.classList.add("preloader--hidden");
       document.body.classList.remove("loading");
-      
-      // Load deferred heavy icon styles completely after critical paint
-      loadDeferredStyles();
 
       // Start typewriter animations now that page is visible
       initTypewriter();
@@ -585,7 +566,7 @@ function runPreloader() {
 
       // Defer CPU-heavy interactive animations setup
       setTimeout(initFuturisticAnimations, 250);
-    }, 400); // Match CSS cubic-bezier animation duration
+    }, 800); // Match CSS cubic-bezier animation duration
   });
 }
 
