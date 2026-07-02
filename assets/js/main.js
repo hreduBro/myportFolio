@@ -605,7 +605,7 @@ function runPreloader() {
 
       // Defer CPU-heavy interactive animations setup
       setTimeout(initFuturisticAnimations, 250);
-    }, 400); // Match CSS cubic-bezier animation duration
+    }, 200); // Match CSS cubic-bezier animation duration
   });
 }
 
