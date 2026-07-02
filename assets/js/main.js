@@ -255,8 +255,10 @@ function renderContent() {
   // Re-run filter projects check
   filterProjects(activeFilter);
   
-  // Re-run Typewriter logic
-  initTypewriter();
+  // Re-run Typewriter logic (skip during first load preloader phase)
+  if (!document.body.classList.contains("loading")) {
+    initTypewriter();
+  }
   
   // Initialize dynamic interactive visual animations (skip during first load preloader phase)
   if (!document.body.classList.contains("loading")) {
@@ -429,11 +431,10 @@ function scrollActive() {
     }
   });
 }
-window.addEventListener("scroll", scrollActive);
-
 /*=============== SHRINKS NAVBAR ON SCROLL ===============*/
 function scrollHeader() {
   const header = document.getElementById("header");
+  if (!header) return;
   if (window.scrollY >= 50) {
     header.classList.add("scroll-header");
     header.style.backgroundColor = "rgba(var(--first-color-rgb), 0.05)";
@@ -442,7 +443,13 @@ function scrollHeader() {
     header.style.backgroundColor = "rgba(var(--first-color-rgb), 0.02)";
   }
 }
-window.addEventListener("scroll", scrollHeader);
+
+function initScrollListeners() {
+  window.addEventListener("scroll", scrollActive);
+  window.addEventListener("scroll", scrollHeader);
+  scrollActive();
+  scrollHeader();
+}
 
 /*=============== LANGUAGE DROPDOWN CONTROLS ===============*/
 const langBtn = document.getElementById("lang-btn");
@@ -569,6 +576,12 @@ function runPreloader() {
       
       // Load deferred heavy icon styles completely after critical paint
       loadDeferredStyles();
+
+      // Start typewriter animations now that page is visible
+      initTypewriter();
+
+      // Bind scroll event listeners
+      initScrollListeners();
 
       // Defer CPU-heavy interactive animations setup
       setTimeout(initFuturisticAnimations, 250);
