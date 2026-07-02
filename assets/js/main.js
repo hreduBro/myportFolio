@@ -371,38 +371,42 @@ function getCurrentTheme() {
   return document.documentElement.getAttribute("data-theme") || darkTheme;
 }
 
-function setTheme(theme) {
+function setTheme(theme, save = false) {
   document.documentElement.className = theme + "-theme";
   document.documentElement.setAttribute('data-theme', theme);
   document.querySelector('meta[name="color-scheme"]').content = theme;
   
-  localStorage.setItem("selected-theme", theme);
+  if (save) {
+    localStorage.setItem("selected-theme", theme);
+  }
   
   // Update icon
   const icon = themeButton.querySelector("i");
-  if (theme === "dark") {
-    icon.className = "bx bx-sun";
-  } else {
-    icon.className = "bx bx-moon";
+  if (icon) {
+    if (theme === "dark") {
+      icon.className = "bx bx-sun";
+    } else {
+      icon.className = "bx bx-moon";
+    }
   }
 }
 
 themeButton.addEventListener("click", () => {
   const current = getCurrentTheme();
   const next = current === darkTheme ? lightTheme : darkTheme;
-  setTheme(next);
+  setTheme(next, true);
 });
 
 // React to OS system changes if user hasn't explicitly chosen a preference
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
   if (!localStorage.getItem("selected-theme")) {
-    setTheme(e.matches ? darkTheme : lightTheme);
+    setTheme(e.matches ? darkTheme : lightTheme, false);
   }
 });
 
-// Set initial theme icon correctly
+// Set initial theme icon correctly without saving to localStorage
 const initialTheme = getCurrentTheme();
-setTheme(initialTheme);
+setTheme(initialTheme, false);
 
 /*=============== SCROLL ACTIVE NAVIGATION LINKS ===============*/
 const sections = document.querySelectorAll("section[id]");
