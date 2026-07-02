@@ -532,6 +532,8 @@ document.addEventListener("DOMContentLoaded", () => {
   runPreloader();
   initPortfolio();
   
+  initDeferredStylesLoader();
+
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
@@ -540,6 +542,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/*=============== DYNAMIC INTERACTION-DRIVEN STYLE LOADER ===============*/
+function loadDeferredStyles() {
+  const styles = [
+    'assets/css/boxicons.min.css',
+    'assets/css/devicon.min.css'
+  ];
+  styles.forEach(src => {
+    if (!document.querySelector(`link[href="${src}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = src;
+      document.head.appendChild(link);
+    }
+  });
+}
+
+function initDeferredStylesLoader() {
+  let loaded = false;
+  const loadStyles = () => {
+    if (loaded) return;
+    loaded = true;
+    loadDeferredStyles();
+    
+    events.forEach(event => {
+      window.removeEventListener(event, loadStyles, { passive: true });
+    });
+  };
+
+  const events = ['mousemove', 'touchstart', 'keydown', 'scroll'];
+  events.forEach(event => {
+    window.addEventListener(event, loadStyles, { passive: true });
+  });
+
+  // Fallback to auto-load after 3.5s for completely idle visitors
+  setTimeout(loadStyles, 3500);
+}
 
 /*=============== FUTURISTIC PRELOADER LOGIC ===============*/
 function runPreloader() {
@@ -566,7 +605,7 @@ function runPreloader() {
 
       // Defer CPU-heavy interactive animations setup
       setTimeout(initFuturisticAnimations, 250);
-    }, 800); // Match CSS cubic-bezier animation duration
+    }, 400); // Match CSS cubic-bezier animation duration
   });
 }
 
